@@ -1,0 +1,84 @@
+{
+  "return": [
+    {
+      "name": "lo",
+      "ip-addresses": [
+        {
+          "ip-address-type": "ipv4",
+          "ip-address": "127.0.0.1",
+          "prefix": 8
+        },
+        {
+          "ip-address-type": "ipv6",
+          "ip-address": "::1",
+          "prefix": 128
+        }
+      ],
+      "statistics": {
+        "tx-packets": 1063,
+        "tx-errs": 0,
+        "rx-bytes": 2328000,
+        "rx-dropped": 0,
+        "rx-packets": 1063,
+        "rx-errs": 0,
+        "tx-bytes": 2328000,
+        "tx-dropped": 0
+      },
+      "hardware-address": "00:00:00:00:00:00"
+    },
+    {
+      "name": "enp1s0",
+      "ip-addresses": [
+        {
+          "ip-address-type": "ipv4",
+          "ip-address": "192.168.122.71",
+          "prefix": 24
+        },
+        {
+          "ip-address-type": "ipv6",
+          "ip-address": "fe80::7493:75e1:286d:f859",
+          "prefix": 64
+        }
+      ],
+      "statistics": {
+        "tx-packets": 418,
+        "tx-errs": 0,
+        "rx-bytes": 309003,
+        "rx-dropped": 892,
+        "rx-packets": 1320,
+        "rx-errs": 0,
+        "tx-bytes": 58093,
+        "tx-dropped": 0
+      },
+      "hardware-address": "52:54:00:0d:ba:09"
+    },
+    {
+      "name": "enp6s0",
+      "ip-addresses": [
+        {
+          "ip-address-type": "ipv4",
+          "ip-address": "20.0.1.16",
+          "prefix": 24
+        },
+        {
+          "ip-address-type": "ipv6",
+          "ip-address": "fe80::2cf5:59ff:fec6:edc9",
+          "prefix": 64
+        }
+      ],
+      "statistics": {
+        "tx-packets": 101374358,
+        "tx-errs": 0,
+        "rx-bytes": 343704872,
+        "rx-dropped": 0,
+        "rx-packets": 5198640,
+        "rx-errs": 0,
+        "tx-bytes": 153115745741,
+        "tx-dropped": 0
+      },
+      "hardware-address": "2e:f5:59:c6:ed:c9"
+    }
+  ]
+}
+
+
