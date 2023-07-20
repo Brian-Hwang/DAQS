@@ -2,6 +2,7 @@ import subprocess
 import json
 import time
 
+
 def get_last_interface(vm_name):
     cmd = [
         "sudo", "virsh", "qemu-agent-command", vm_name,
@@ -13,10 +14,12 @@ def get_last_interface(vm_name):
     # Return the name of the last interface
     return data["return"][-1]["name"]
 
+
 def init_traffic_control(vm_name, interface, bw_limit, command):
     cmd = [
         "virsh", "qemu-agent-command", vm_name,
-        '{"execute": "guest-exec", "arguments": { "path": "/bin/bash", "arg": ["-c", "' + command.format(interface=interface, bw_limit=bw_limit) + '"], "capture-output": true }}', "--pretty"
+        '{"execute": "guest-exec", "arguments": { "path": "/bin/bash", "arg": ["-c", "' + command.format(
+            interface=interface, bw_limit=bw_limit) + '"], "capture-output": true }}', "--pretty"
     ]
     subprocess.run(cmd)
 

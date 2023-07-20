@@ -2,6 +2,8 @@ import subprocess
 import json
 
 # Get Network Interface name from VM (ex: enp6s0)
+
+
 def get_last_interface(vm_name):
     cmd = [
         "sudo", "virsh", "qemu-agent-command", vm_name,
@@ -14,13 +16,17 @@ def get_last_interface(vm_name):
     return data["return"][-1]["name"]
 
 # Run commands to limit bandwidth
+
+
 def limit_vm_bandwidth(vm_name, interface, bw_limit, commands):
     for command in commands:
         cmd = [
             "sudo", "virsh", "qemu-agent-command", vm_name,
-            '{"execute": "guest-exec", "arguments": { "path": "/bin/bash", "arg": ["-c", "' + command.format(interface=interface, bw_limit=bw_limit) + '"], "capture-output": true }}', "--pretty"
+            '{"execute": "guest-exec", "arguments": { "path": "/bin/bash", "arg": ["-c", "' + command.format(
+                interface=interface, bw_limit=bw_limit) + '"], "capture-output": true }}', "--pretty"
         ]
         subprocess.run(cmd)
+
 
 # Set VM name and bandwidth limit
 vm_name = "ubuntu20.04-clone2"
