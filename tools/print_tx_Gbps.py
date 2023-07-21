@@ -20,9 +20,14 @@ def print_tc_Gbit(vm_name, interface):
             f"Data transmitted : {diff_tx_Gbits:.6f} Gbits/s")
 
 
-vm_name = "ubuntu20.04-clone2"
+def main():
+    vm_name = "ubuntu20.04-clone2"
 
-# Get the last interface
-interface = last_network_interface(vm_name)
+    # Get the last interface
+    interface = last_network_interface(vm_name)
 
-print_tc_Gbit(vm_name, interface)
+    print_tc_Gbit(vm_name, interface)
+
+
+if __name__ == "__main__":
+    main()

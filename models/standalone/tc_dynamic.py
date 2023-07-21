@@ -24,10 +24,15 @@ def limit_vm_bandwidth_dynamically(vm_name, interface, bw_limit):
             tc_limit_bandwidth
 
 
-vm_name = "ubuntu_20.04-clone2"
-bw_limit = "20Gbit"
+def main():
+    vm_name = "ubuntu_20.04-clone2"
+    bw_limit = "20Gbit"
 
-# Get the last interface
-interface = last_network_interface(vm_name)
+    # Get the last interface
+    interface = last_network_interface(vm_name)
 
-limit_vm_bandwidth_dynamically(vm_name, interface, bw_limit)
+    limit_vm_bandwidth_dynamically(vm_name, interface, bw_limit)
+
+
+if __name__ == "__main__":
+    main()
