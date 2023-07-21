@@ -1,8 +1,8 @@
 import time
 import configparser
-from utils.traffic_control import *
-from utils.network_interfaces import *
-from utils.virsh import *
+from ..utils.traffic_control import *
+from ..utils.network_interfaces import *
+from ..utils.virsh import *
 
 config_dir = '../config'
 
@@ -15,7 +15,7 @@ def limit_vm_bandwidth_weighted(vm_names, interfaces, total_bandwidth, payments,
             initialized_vms.add(vm_name)
 
         bw_limit_vm = (payments[vm_name] / total_payment) * total_bandwidth
-        bw_limit = f"{bw_limit_vm}Gbit"
+        bw_limit = f"{bw_limit_vm}gbits"
         tc_limit_bandwidth(vm_name, interfaces[vm_name], bw_limit)
 
 
@@ -41,7 +41,7 @@ def main():
             continue
 
         if vm_names != prev_vm_names:
-            interfaces = {vm_name: last_network_interface(
+            interfaces = {vm_name: get_last_network_interface(
                 vm_name) for vm_name in vm_names}
             new_vms = vm_names - prev_vm_names
             initialized_vms = initialized_vms.intersection(vm_names) | new_vms

@@ -1,4 +1,4 @@
-from utils.guest_agent import execute_guest_exec
+from ..utils.guest_agent import execute_guest_exec
 
 
 def tc_del_qdisc(vm_name, interface):

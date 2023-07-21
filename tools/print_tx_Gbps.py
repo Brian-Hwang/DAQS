@@ -1,32 +1,30 @@
-import subprocess
-import json
 import time
-from utils.traffic_control import *
-from utils.network_interfaces import *
+from ..utils.traffic_control import *
+from ..utils.network_interfaces import *
 
 
-def print_tc_Gbit(vm_name, interface):
-    # Get the current transmitted Gbits
-    prev_tx_Gbits = check_tc_Gbit(vm_name, interface)
+def print_tc_gbits(vm_name, interface):
+    # Get the current transmitted gbits
+    prev_tx_gbits = check_tx_gbits(vm_name, interface)
     while True:
         time.sleep(1)  # Wait for 1 second
 
-        curr_tx_Gbits = check_tc_Gbit(vm_name, interface)
-        diff_tx_Gbits = curr_tx_Gbits - prev_tx_Gbits
-        prev_tx_Gbits = curr_tx_Gbits
+        curr_tx_gbits = check_tx_gbits(vm_name, interface)
+        diff_tx_gbits = curr_tx_gbits - prev_tx_gbits
+        prev_tx_gbits = curr_tx_gbits
 
         # Print with 6 decimal places
         print(
-            f"Data transmitted : {diff_tx_Gbits:.6f} Gbits/s")
+            f"Data transmitted : {diff_tx_gbits:.6f} gbits/s")
 
 
 def main():
     vm_name = "ubuntu20.04-clone2"
 
     # Get the last interface
-    interface = last_network_interface(vm_name)
+    interface = get_last_network_interface(vm_name)
 
-    print_tc_Gbit(vm_name, interface)
+    print_tc_gbits(vm_name, interface)
 
 
 if __name__ == "__main__":

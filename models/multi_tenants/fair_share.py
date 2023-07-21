@@ -1,13 +1,13 @@
 import time
 import configparser
-from utils.traffic_control import *
-from utils.network_interfaces import *
-from utils.virsh import *
+from ..utils.traffic_control import *
+from ..utils.network_interfaces import *
+from ..utils.virsh import *
 
 
 def limit_vm_bandwidth_evenly(vm_names, interfaces, total_bandwidth, initialized_vms):
     bw_limit_per_vm = total_bandwidth / len(vm_names)
-    bw_limit = f"{bw_limit_per_vm}Gbit"
+    bw_limit = f"{bw_limit_per_vm}gbits"
 
     for vm_name in vm_names:
         if vm_name not in initialized_vms:
@@ -33,7 +33,7 @@ def main():
             continue
 
         if vm_names != prev_vm_names:
-            interfaces = {vm_name: last_network_interface(
+            interfaces = {vm_name: get_last_network_interface(
                 vm_name) for vm_name in vm_names}
             new_vms = vm_names - prev_vm_names
             initialized_vms = initialized_vms.intersection(vm_names) | new_vms
