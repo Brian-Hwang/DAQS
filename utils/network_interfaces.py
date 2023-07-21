@@ -18,9 +18,9 @@ def check_tc_byte(vm_name, interface):
     return 0
 
 
-def check_tc_Gbits(vm_name, interface):
+def check_tc_Gbit(vm_name, interface):
     tx_bytes = check_tc_byte(vm_name, interface)
 
-    # Convert bytes to Gbits
-    tx_Gbits = tx_bytes / (2**30) * 8
-    return tx_Gbits
+    # Convert byte to Gbit
+    tx_Gbit = tx_bytes / (2**30) * 8
+    return tx_Gbit

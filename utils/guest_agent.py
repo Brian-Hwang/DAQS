@@ -2,7 +2,7 @@ import subprocess
 import json
 
 
-def execute_qemu_agent_command(vm_name, command_args):
+def qemu_agent_command(vm_name, command_args):
     cmd = [
         "sudo", "virsh", "qemu-agent-command", vm_name,
         json.dumps(command_args), "--pretty"
@@ -15,7 +15,7 @@ def execute_qemu_agent_command(vm_name, command_args):
 
 def guest_network_get_interfaces(vm_name):
     command_args = {"execute": "guest-network-get-interfaces"}
-    data = execute_qemu_agent_command(vm_name, command_args)
+    data = qemu_agent_command(vm_name, command_args)
 
     return data
 
@@ -29,4 +29,4 @@ def guest_exec(vm_name, command):
             "capture-output": True
         }
     }
-    execute_qemu_agent_command(vm_name, command_args)
+    qemu_agent_command(vm_name, command_args)
