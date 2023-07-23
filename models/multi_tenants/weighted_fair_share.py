@@ -1,8 +1,8 @@
 import time
 import configparser
-from ..utils.traffic_control import *
-from ..utils.network_interfaces import *
-from ..utils.virsh import *
+from GA.utils.traffic_control import *
+from GA.utils.network_interfaces import *
+from GA.utils.virsh import *
 
 config_dir = '../config'
 

@@ -1,6 +1,6 @@
-from ..utils.traffic_control import *
-from ..utils.network_interfaces import *
-from ..utils.virsh import *
+from GA.utils.traffic_control import *
+from GA.utils.network_interfaces import *
+from GA.utils.virsh import *
 
 
 def limit_vm_bandwidth_once(vm_name, interface, bw_limit):

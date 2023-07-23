@@ -1,6 +1,6 @@
 import time
-from ..utils.traffic_control import *
-from ..utils.network_interfaces import *
+from GA.utils.traffic_control import *
+from GA.utils.network_interfaces import *
 
 
 def print_tc_gbits(vm_name, interface):

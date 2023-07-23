@@ -1,4 +1,4 @@
-from ..utils.guest_agent import guest_network_get_interfaces
+from GA.utils.guest_agent import guest_network_get_interfaces
 
 
 def get_last_network_interface(vm_name):
