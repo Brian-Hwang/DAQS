@@ -1,7 +1,7 @@
 import time
-from GA.utils.traffic_control import *
-from GA.utils.network_interfaces import *
-from GA.utils.virsh import *
+from utils.traffic_control import *
+from GA_VM_QOS.utils.guest_utils import *
+from GA_VM_QOS.utils.host_utils import *
 
 
 def limit_vm_bandwidth_dynamically(vm_names, interface, bw_limit):
@@ -22,16 +22,16 @@ def limit_vm_bandwidth_dynamically(vm_names, interface, bw_limit):
             prev_tx_gbits[vm_name] = curr_tx_gbits[vm_name]
 
             if first_execution[vm_name]:
-                tc_init(vm_name, interface)
-                tc_limit_bandwidth(vm_name, interface, bw_limit)
+                init(vm_name, interface)
+                set_bandwidth_limit(vm_name, interface, bw_limit)
                 first_execution[vm_name] = False
 
             elif total_tx_gbits > 36 and diff_tx_gbits > 20:
-                tc_limit_bandwidth(vm_name, interface, bw_limit)
+                set_bandwidth_limit(vm_name, interface, bw_limit)
 
 
 vm_names = get_running_vms()
-bw_limit = "20gbits"
+bw_limit = "20Gbitss"
 
 # Get the last interface for each VM
 interfaces = {vm_name: get_last_network_interface(

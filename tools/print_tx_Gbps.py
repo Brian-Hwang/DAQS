@@ -1,9 +1,9 @@
 import time
-from GA.utils.traffic_control import *
-from GA.utils.network_interfaces import *
+from utils.traffic_control import *
+from GA_VM_QOS.utils.guest_utils import *
 
 
-def print_tc_gbits(vm_name, interface):
+def print_gbits(vm_name, interface):
     # Get the current transmitted gbits
     prev_tx_gbits = check_tx_gbits(vm_name, interface)
     while True:
@@ -24,7 +24,7 @@ def main():
     # Get the last interface
     interface = get_last_network_interface(vm_name)
 
-    print_tc_gbits(vm_name, interface)
+    print_gbits(vm_name, interface)
 
 
 if __name__ == "__main__":

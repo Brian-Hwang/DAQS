@@ -3,16 +3,16 @@ import configparser
 
 
 def update_payment(vm_name, payment, config_dir):
-    payment_config = configparser.ConfigParser()
-    payment_config.read(f'{config_dir}/payments.ini')
+    payment = configparser.ConfigParser()
+    payment.read(f'{config_dir}/payments.ini')
 
-    if 'DEFAULT' not in payment_config:
-        payment_config.add_section('DEFAULT')
+    if 'DEFAULT' not in payment:
+        payment.add_section('DEFAULT')
 
-    payment_config['DEFAULT'][vm_name] = str(payment)
+    payment['DEFAULT'][vm_name] = str(payment)
 
     with open(f'{config_dir}/payments.ini', 'w') as configfile:
-        payment_config.write(configfile)
+        payment.write(configfile)
 
 
 def main():

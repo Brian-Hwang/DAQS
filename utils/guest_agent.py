@@ -1,3 +1,6 @@
+"""
+Module for interacting with VMs using qemu guest agent.
+"""
 import subprocess
 import json
 
@@ -7,26 +10,33 @@ def qemu_agent_command(vm_name, command_args):
         "sudo", "virsh", "qemu-agent-command", vm_name,
         json.dumps(command_args), "--pretty"
     ]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-    data = json.loads(result.stdout)
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True)
 
+    # Wait for the process to complete and get the output
+    stdout, _ = process.communicate()
+
+    if process.returncode != 0:
+        print(f"Command failed with return code {process.returncode}")
+        return None
+
+    data = json.loads(stdout)
     return data
 
 
-def guest_network_get_interfaces(vm_name):
+def network_get_interfaces(vm_name):
+    """
+    Gets network interfaces of a VM.
+    """
     command_args = {"execute": "guest-network-get-interfaces"}
     data = qemu_agent_command(vm_name, command_args)
-
     return data
 
 
-def guest_exec(vm_name, command):
-    command_args = {
-        "execute": "guest-exec",
-        "arguments": {
-            "path": "/bin/bash",
-            "arg": ["-c", command],
-            "capture-output": True
-        }
-    }
-    qemu_agent_command(vm_name, command_args)
+def exec(vm_name, command):
+    """
+    Executes a command inside a VM.
+    """
+    command_args = {"execute": "guest-exec", "arguments": {"path": "/bin/bash",
+                                                           "arg": ["-c", command], "capture-output": True}}
+    data = qemu_agent_command(vm_name, command_args)
+    return data
