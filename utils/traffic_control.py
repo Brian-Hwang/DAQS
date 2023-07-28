@@ -24,7 +24,7 @@ def limit_class_bandwidth(vm_name, interface, bw_limit):
     """
     Limits the bandwidth of class 1 traffic on a VM's network interface.
     """
-    command = f"sudo tc class add dev {interface} parent 1: classid 1:1 htb rate {bw_limit}Gbit"
+    command = f"sudo tc class add dev {interface} parent 1:1 classid 1:10 htb rate {bw_limit}Gbit"
     guest_agent.exec(vm_name, command)
 
 

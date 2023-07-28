@@ -32,3 +32,21 @@ def read_payments():
     payments = {key: config.getint('DEFAULT', key)
                 for key in config['DEFAULT']}
     return payments
+
+
+def read_host_base_directory():
+    """
+    Reads the base directory from the configuration.
+    """
+    config = read_from_config('default.ini')
+    base_directory = config.get('DEFAULT', 'host_base_directory')
+    return base_directory
+
+
+def read_guest_base_directory():
+    """
+    Reads the base directory from the configuration.
+    """
+    config = read_from_config('default.ini')
+    base_directory = config.get('DEFAULT', 'guest_base_directory')
+    return base_directory
