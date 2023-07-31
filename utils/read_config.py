@@ -53,7 +53,7 @@ def read_guest_base_directory():
 
 
 def read_guaranteed_vms():
-    config = read_from_config('guaranteed.ini')
+    config = read_from_config('min_bw.ini')
     guaranteed = {key: config.getint('DEFAULT', key)
                 for key in config['DEFAULT']}
     return guaranteed
