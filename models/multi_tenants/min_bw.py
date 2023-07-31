@@ -19,8 +19,8 @@ STEP_GBPS = 1 # 조정할 속도 단위
 class MinBandwidthManager:
 
     def __init__(self, config_path="config.ini"):
-        self.host_interface = cfg.read_host_interface(config_path)
-        self.host_bandwidth = host.get_bandwidth(self.host_interface)
+        host_interface = cfg.read_host_interface()
+        host_bandwidth = host.get_bandwidth(host_interface)
 
         self.vms = {}
 
