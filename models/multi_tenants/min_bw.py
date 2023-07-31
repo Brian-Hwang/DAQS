@@ -23,7 +23,7 @@ class MinBandwidthManager:
 
         self.vms = {}
         self.last_time = -1
-        self.period = 1 # 주기 1초
+        self.period = datetime.timedelta(microseconds=self.period_ms) # 주기 1초
         self.last_time = datetime.now()
         self.regulated_speed = -1
         self.guaranteed_vms = cfg.read_guaranteed_vms()
@@ -40,8 +40,9 @@ class MinBandwidthManager:
             if datetime.now() - self.last_time > self.period:
                 self.last_time += self.period
                 continue            
-            time.sleep(self.period - (datetime.now() - self.last_time))
+            time.sleep((self.period - (datetime.now() - self.last_time)).total_seconds())
             break
+        print("run")
         self.last_time = datetime.now()
         self.run()
 
