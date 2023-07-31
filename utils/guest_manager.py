@@ -28,6 +28,6 @@ class GuestManager:
         
         time_diff = (self.last_time - prev_time).total_seconds()
         bytes_diff = self.last_bytes - prev_bytes
-        return float(bytes_diff) / float(time_diff)
+        return float(bytes_diff) / float(time_diff) * 1000.0 # Mbps
     
         
