@@ -52,11 +52,11 @@ class MinBandwidthManager:
             self.schedule_run()
 
         for vm in vms:
-            if vm in self.vms.keys:
+            if vm in self.vms.keys():
                 continue
             self.vms[vm] = gm.GuestManager(vm)
 
-        for key, value in self.vms.items():
+        for key, value in self.vms:
             if key not in vms:
                 del self.vms[key]
 
