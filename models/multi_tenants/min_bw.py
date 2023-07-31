@@ -98,7 +98,7 @@ class MinBandwidthManager:
                 self.regulated_speed -= STEP_GBPS
         
         elif current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST: # 초과하여 사용 중
-            if self.total_speed - self.current_speed > IGNORE_BW_THRESHOLD_GBPS: # 다른 것이 사용 중인 경우에
+            if total_speed - self.current_speed > IGNORE_BW_THRESHOLD_GBPS: # 다른 것이 사용 중인 경우에
                 self.regulated_speed += STEP_GBPS
 
         if self.regulated_speed > 0:
