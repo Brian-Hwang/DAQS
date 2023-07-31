@@ -6,7 +6,7 @@ from utils import guest_utils
 class GuestManager:
     def __init__(self, name):
         self.name = name
-        self.iface = get_last_network_interface(name)
+        self.iface = guest_utils.get_last_network_interface(name)
         self.last_time = datetime.now()
         self.last_bytes = -1
 
@@ -21,7 +21,7 @@ class GuestManager:
 
         # Get the current transmitted gbits
         self.last_time = datetime.now()
-        self.last_bytes = check_tx_bytes(self.name, self.iface)
+        self.last_bytes = guest_utils.check_tx_bytes(self.name, self.iface)
 
         if last_bytes == -1:
             return -1
