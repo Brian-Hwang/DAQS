@@ -115,7 +115,11 @@ class MinBandwidthManager:
 
         self.running = False
             
-
-if __name__ == "__main__":
+            
+def run_min_bw():
     manager = MinBandwidthManager()
     manager.start()
+
+
+if __name__ == "__main__":
+    run_min_bw()
