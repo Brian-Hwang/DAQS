@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+import datetime
 import utils.guest_manager as gm
 import utils.traffic_control as tc
 import utils.guest_utils as guest
@@ -24,12 +24,12 @@ class MinBandwidthManager:
         self.vms = {}
         self.last_time = -1
         self.period = datetime.timedelta(microseconds=self.period_ms) # 주기 1초
-        self.last_time = datetime.now()
+        self.last_time = datetime.datetime.now()
         self.regulated_speed = -1
         self.guaranteed_vms = cfg.read_guaranteed_vms()
 
     def start(self):
-        self.last_time = datetime.now()
+        self.last_time = datetime.datetime.now()
         self.run()
 
 
@@ -37,13 +37,13 @@ class MinBandwidthManager:
         # 주기적으로 실행하게끔 시간 보정
         while True:
             # 이미 주기가 지났다면 한 주기 더 대기
-            if datetime.now() - self.last_time > self.period:
+            if datetime.datetime.now() - self.last_time > self.period:
                 self.last_time += self.period
                 continue            
-            time.sleep((self.period - (datetime.now() - self.last_time)).total_seconds())
+            time.sleep((self.period - (datetime.datetime.now() - self.last_time)).total_seconds())
             break
         print("run")
-        self.last_time = datetime.now()
+        self.last_time = datetime.datetime.now()
         self.run()
 
     
