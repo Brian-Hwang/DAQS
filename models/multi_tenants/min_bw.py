@@ -40,6 +40,24 @@ class MinBandwidthManager:
         if vms is None:
             self.schedule_run()
 
+        guaranteed_vms = cfg.read_guaranteed_vms()
+        min_bw = cfg.read_min_bw()
+
+        restricted_bw = self.host_bandwidth - min_bw * len(guaranteed_vms)
+        for vm_name in guaranteed_vms:
+            if vm_name in vms:
+                continue
+            while True:
+                try:
+                    interface = guest.get_last_network_interface(vm_name)
+                    tc.set_bandwidth_limit(vm_name, interface, min_bw, True)
+                    break
+                except TypeError:
+                    print(f"VM {vm_name} is not fully ready. Waiting...")
+                    time.sleep(1)
+
+
+
 
 if __name__ == "__main__":
     MinBandwidthManager()
