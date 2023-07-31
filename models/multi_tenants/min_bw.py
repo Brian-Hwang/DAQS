@@ -56,7 +56,7 @@ class MinBandwidthManager:
                 continue
             self.vms[vm] = gm.GuestManager(vm)
 
-        for key, value in self.vms:
+        for key, value in self.vms.items():
             if key not in vms:
                 del self.vms[key]
 
