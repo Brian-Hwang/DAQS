@@ -70,7 +70,7 @@ class MinBandwidthManager:
         # one is guaranteed, the other is not.
 
         guaranteed_speed = 0
-        for name, spd in self.guaranteed_vms:
+        for name, spd in self.guaranteed_vms.items():
             if name in vms.keys():
                 guaranteed_speed += spd
 
