@@ -27,26 +27,30 @@ class MinBandwidthManager:
         self.last_time = datetime.datetime.now()
         self.regulated_speed = -1
         self.guaranteed_vms = cfg.read_guaranteed_vms()
+        self.running = False
 
     def start(self):
         self.last_time = datetime.datetime.now()
-        self.run()
+        self.schedule_run()
 
 
     def schedule_run(self):
         # 주기적으로 실행하게끔 시간 보정
         while True:
+            if self.running:
+                continue
             # 이미 주기가 지났다면 한 주기 더 대기
             if datetime.datetime.now() - self.last_time > self.period:
                 self.last_time += self.period
                 continue            
             time.sleep((self.period - (datetime.datetime.now() - self.last_time)).total_seconds())
-            break
-        self.last_time = datetime.datetime.now()
-        self.run()
+            self.last_time = datetime.datetime.now()
+            self.run()
 
     
     def run(self):
+        self.running = True
+
         vms = host.get_running_vms()
         if vms is None:
             self.schedule_run()
@@ -99,7 +103,13 @@ class MinBandwidthManager:
                     continue
                 tc.set_bandwidth_limit(vm, self.vms[vm].iface, self.regulated_speed)
 
-        self.schedule_run()
+        elif self.regulated_speed == -1:
+            for vm in vms:
+                tc.delete_queue_discipline(vm, self.vms[vm].iface)
+        
+        print(f"Total speed {total_speed}, guaranteed group {current_speed}, regulated speed {self.regulated_speed}")
+
+        self.running = False
             
 
 if __name__ == "__main__":
