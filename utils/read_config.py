@@ -53,6 +53,12 @@ def read_guest_base_directory():
 
 
 def read_guaranteed_vms():
+    """
+    Reads the guaranteed VMs from the configuration.
+    key: name of the VM
+    value: guaranteed bandwidth in Gbps, for that VM
+    e.g. "b1_vm1 = 10" means b1_vm1 needs to guaranteed more than 10Gbps
+    """
     config = read_from_config('min_bw.ini')
     guaranteed = {key: config.getint('DEFAULT', key)
                 for key in config['DEFAULT']}
