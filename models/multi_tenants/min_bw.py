@@ -52,7 +52,7 @@ class MinBandwidthManager:
             self.schedule_run()
 
         for vm in vms:
-            if self.vms.keys.contains(vm):
+            if vm in self.vms.keys:
                 continue
             self.vms[vm] = gm.GuestManager(vm)
 
@@ -65,7 +65,7 @@ class MinBandwidthManager:
 
         guaranteed_speed = 0
         for name, spd in self.guaranteed_vms:
-            if vms.keys.contains(name):
+            if name in vms.keys:
                 guaranteed_speed += spd
         
         current_speed = 0       
