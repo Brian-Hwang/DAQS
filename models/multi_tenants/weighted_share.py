@@ -40,7 +40,7 @@ def weighted_share_vm_bandwidth():
     initialized_vms = set()
 
     while True:
-        time.sleep(1)
+        start_time = time.perf_counter()
 
         vm_names = host.get_running_vms()
         if vm_names is None:
@@ -71,6 +71,10 @@ def weighted_share_vm_bandwidth():
 
             initialized_vms = initialized_vms.intersection(ready_vms)
             prev_vm_names = ready_vms
+
+        elapsed_time = time.perf_counter() - start_time
+        sleep_time = max(0, 1 - elapsed_time)
+        time.sleep(sleep_time)
 
 
 if __name__ == "__main__":

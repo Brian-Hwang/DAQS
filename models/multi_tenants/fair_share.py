@@ -34,7 +34,7 @@ def fair_share_vm_bandwidth():
     initialized_vms = set()
 
     while True:
-        time.sleep(1)
+        start_time = time.perf_counter()
 
         vm_names = host.get_running_vms()
         if vm_names is None:
@@ -54,6 +54,7 @@ def fair_share_vm_bandwidth():
                     except TypeError:
                         print(f"VM {vm_name} is not fully ready. Waiting...")
                         time.sleep(1)
+
             if len(ready_vms) == 1:
                 vm_name = next(iter(ready_vms))  # get the only VM
                 tc.delete_queue_discipline(vm_name, interfaces[vm_name])
@@ -64,6 +65,10 @@ def fair_share_vm_bandwidth():
 
             initialized_vms = initialized_vms.intersection(ready_vms)
             prev_vm_names = ready_vms
+
+        elapsed_time = time.perf_counter() - start_time
+        sleep_time = max(0, 1 - elapsed_time)
+        time.sleep(sleep_time)
 
 
 if __name__ == "__main__":
