@@ -52,12 +52,6 @@ def read_guest_base_directory():
     return base_directory
 
 
-def read_min_bw():
-    config = read_from_config('min_bw.ini')
-    min_bw = config.getint('DEFAULT', 'min_bw')
-    return min_bw
-
-
 def read_guaranteed_vms():
     config = read_from_config('guaranteed.ini')
     guaranteed = {key: config.getint('DEFAULT', key)

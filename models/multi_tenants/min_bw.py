@@ -1,9 +1,19 @@
 import time
 from datetime import datetime
+import utils.guest_manager as gm
 import utils.traffic_control as tc
 import utils.guest_utils as guest
 import utils.host_utils as host
 import utils.read_config as cfg
+
+
+IGNORE_BW_THRESHOLD_GBPS = 1 # 1Gbps 이하로 사용 중인 것은 무시
+
+MARGINAL_RATE = 1.1 # guaranteed에 대해서 적용할 마진 비율
+MARGINAL_OFFEST = 0 # guaranteed에 대해서 적용할 마진값
+
+STEP_GBPS = 1 # 조정할 속도 단위
+
 
 
 class MinBandwidthManager:
@@ -12,11 +22,12 @@ class MinBandwidthManager:
         self.host_interface = cfg.read_host_interface(config_path)
         self.host_bandwidth = host.get_bandwidth(self.host_interface)
 
-        self.prev_vm_names = set()
-        self.initialized_vms = set()
+        self.vms = {}
 
         self.period = 1 # 주기 1초
         self.last_time = datetime.time()
+        self.regulated_speed = -1
+        self.guaranteed_vms = cfg.read_guaranteed_vms()
 
     def start(self):
         self.last_time = datetime.time()
@@ -40,88 +51,54 @@ class MinBandwidthManager:
         if vms is None:
             self.schedule_run()
 
-        guaranteed_vms = cfg.read_guaranteed_vms()
-        min_bw = cfg.read_min_bw()
-
-        restricted_bw = self.host_bandwidth - min_bw * len(guaranteed_vms)
-        for vm_name in guaranteed_vms:
-            if vm_name in vms:
+        for vm in vms:
+            if self.vms.keys.contains(vm):
                 continue
-            while True:
-                try:
-                    interface = guest.get_last_network_interface(vm_name)
-                    tc.set_bandwidth_limit(vm_name, interface, min_bw, True)
-                    break
-                except TypeError:
-                    print(f"VM {vm_name} is not fully ready. Waiting...")
-                    time.sleep(1)
+            self.vms[vm] = gm.GuestManager(vm)
 
+        for key, value in self.vms.items():
+            if key not in vms:
+                del self.vms[key]
 
+        # Assume that there are two VMs
+        # one is guaranteed, the other is not.
 
+        guaranteed_speed = 0
+        for name, spd in self.guaranteed_vms:
+            if vms.keys.contains(name):
+                guaranteed_speed += spd
+        
+        current_speed = 0       
+        total_speed = 0
+        for vm in vms:
+            spd = self.vms[vm].get_tx_speed()
+            if vm in self.guaranteed_vms.keys:
+                # guaranteed vm
+                current_speed += spd
+                total_speed += spd
+            else:
+                # not guaranteed vm
+                total_speed += spd
+
+        if current_speed < IGNORE_BW_THRESHOLD_GBPS: # 사용중이지 않은 것으로 간주
+            self.regulated_speed = -1        
+
+        if current_speed < guaranteed_speed: # 침해 중
+            if self.regulated_speed == -1:
+                self.regulated_speed = self.host_bandwidth - guaranteed_speed
+            else:
+                self.regulated_speed -= STEP_GBPS
+        
+        if current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST: # 초과하여 사용 중
+            if self.total_speed - self.current_speed > IGNORE_BW_THRESHOLD_GBPS: # 다른 것이 사용 중인 경우에
+                self.regulated_speed += STEP_GBPS
+
+        if self.regulated_speed > 0:
+            for vm in vms:
+                if vm in self.guaranteed_vms.keys:
+                    continue
+                tc.set_bandwidth_limit(vm, self.vms[vm].iface, self.regulated_speed)
+            
 
 if __name__ == "__main__":
     MinBandwidthManager()
-
-       
-"""
-def limit_vm_bandwidth_evenly(vm_names, interfaces, total_bandwidth, initialized_vms):
-    
-    #Function to limit the bandwidth of virtual machines evenly.
-    #vm_names: list of names of the VMs
-    #interfaces: mapping of VM names to their respective interfaces
-    #total_bandwidth: total bandwidth available
-    #initialized_vms: set of VMs that have been initialized
-
-    bw_limit_per_vm = total_bandwidth // len(vm_names)
-
-    for vm_name in vm_names:
-        is_initialized = vm_name in initialized_vms
-        tc.set_bandwidth_limit(
-            vm_name, interfaces[vm_name], bw_limit_per_vm, is_initialized)
-        initialized_vms.add(vm_name)
-
-
-def fair_share_vm_bandwidth():
-
-    #Function to manage the bandwidth of VMs.
-    #It continuously monitors the VMs and adjusts their bandwidth.
-
-    host_interface = cfg.read_host_interface()
-    host_bandwidth = host.get_bandwidth(host_interface)
-
-    prev_vm_names = set()
-    initialized_vms = set()
-
-    while True:
-        time.sleep(1)
-
-        vm_names = host.get_running_vms()
-        if vm_names is None:
-            continue
-
-        if vm_names != prev_vm_names or not initialized_vms:
-            interfaces = {}
-            ready_vms = set()
-
-            for vm_name in vm_names:
-                while True:
-                    try:
-                        interfaces[vm_name] = guest.get_last_network_interface(
-                            vm_name)
-                        ready_vms.add(vm_name)
-                        break
-                    except TypeError:
-                        print(f"VM {vm_name} is not fully ready. Waiting...")
-                        time.sleep(1)
-            if len(ready_vms) == 1:
-                vm_name = next(iter(ready_vms))  # get the only VM
-                tc.delete_queue_discipline(vm_name, interfaces[vm_name])
-                initialized_vms.discard(vm_name)
-            else:
-                limit_vm_bandwidth_evenly(
-                    ready_vms, interfaces, host_bandwidth, initialized_vms)
-
-            initialized_vms = initialized_vms.intersection(ready_vms)
-            prev_vm_names = ready_vms
-"""
-
