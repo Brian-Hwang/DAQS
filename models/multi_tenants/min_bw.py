@@ -71,7 +71,7 @@ class MinBandwidthManager:
         current_speed = 0       
         total_speed = 0
         for vm in vms:
-            spd = self.vms[vm].get_tx_speed()
+            spd = self.vms[vm].get_tx_speed_mbps() / (2.0**10) # gbps
             if vm in self.guaranteed_vms.keys:
                 # guaranteed vm
                 current_speed += spd

@@ -10,7 +10,7 @@ class GuestManager:
         self.last_time = datetime.now()
         self.last_bytes = -1
 
-    def get_tx_speed(self):
+    def get_tx_speed_mbps(self):
         """
         Checks the amount of data transmitted by a VM's network interface in Mbps.
         Returns -1 for the first call
