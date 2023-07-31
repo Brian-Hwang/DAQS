@@ -18,9 +18,9 @@ STEP_GBPS = 1 # 조정할 속도 단위
 
 class MinBandwidthManager:
 
-    def __init__(self, config_path="config.ini"):
-        host_interface = cfg.read_host_interface()
-        host_bandwidth = host.get_bandwidth(host_interface)
+    def __init__(self):
+        self.host_interface = cfg.read_host_interface()
+        self.host_bandwidth = self.host_interface.get_bandwidth(self.host_interface)
 
         self.vms = {}
 
@@ -71,7 +71,7 @@ class MinBandwidthManager:
         current_speed = 0       
         total_speed = 0
         for vm in vms:
-            spd = self.vms[vm].get_tx_speed_mbps() / (2.0**10) # gbps
+            spd = self.vms[vm].get_tx_speed_mbps() / (2.0**10) # Gbps
             if vm in self.guaranteed_vms.keys:
                 # guaranteed vm
                 current_speed += spd
