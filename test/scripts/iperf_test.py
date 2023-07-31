@@ -31,7 +31,7 @@ parser.add_argument("-m", "--message_size", default=default_values["message_size
 parser.add_argument("-t", "--test_times", default=default_values["test_times"],
                     type=int, help=f"set the test times (default: {default_values['test_times']})")
 parser.add_argument("-l", "--loop_on", default=default_values["loop_on"],
-                    help=f"set what to loop on (duration, window_size, message_size, parallel - default: {default_values['loop_on']})")
+                    help=f"set what to loop on (duration, window_size, message_size, parallel, nothing, - default: {default_values['loop_on']})")
 parser.add_argument("-s", "--start_value", default=default_values["start_value"], type=int,
                     help=f"set the start value for loop (default: {default_values['start_value']})")
 parser.add_argument("-e", "--end_value", default=default_values["end_value"], type=int,
@@ -55,6 +55,9 @@ for j in range(1, args.test_times + 1):
         elif args.loop_on == "message_size":
             output = subprocess.check_output(
                 f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {i}K", shell=True).decode()
+        elif args.loop_on == "nothing":
+            output = subprocess.check_output(
+                f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {args.message_size}", shell=True).decode()
         else:
             output = subprocess.check_output(
                 f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P {i} -l {args.message_size}", shell=True).decode()

@@ -1,12 +1,12 @@
+import os
 import time
 import inspect
-import threading
 import subprocess
 import utils.guest_agent as guest_agent
 import utils.host_utils as host
 import utils.read_config as cfg
-import models.multi_tenants.fair_share as fair_share
-test_name = "test2-fairshare"
+
+test_name = "test1-baseline"
 
 
 def N_vs_N():
@@ -25,7 +25,6 @@ def N_vs_N():
 
     host_base_path = cfg.read_host_base_directory()
 
-    current_file_name = __file__
     current_function_name = inspect.currentframe().f_code.co_name
 
     for vm_name in vm_names:
@@ -63,7 +62,6 @@ def N_vs_1():
 
     host_base_path = cfg.read_host_base_directory()
 
-    current_file_name = __file__
     current_function_name = inspect.currentframe().f_code.co_name
 
     for vm_name in vm_names:
@@ -80,9 +78,6 @@ def N_vs_1():
 
 
 def main():
-    thread = threading.Thread(target=fair_share.fair_share_vm_bandwidth)
-    thread.start()
-
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
     guest_file_path = cfg.read_guest_base_directory()
     vm_names = host.get_running_vms()
