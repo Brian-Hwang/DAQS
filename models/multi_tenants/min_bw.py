@@ -83,13 +83,13 @@ class MinBandwidthManager:
         if current_speed < IGNORE_BW_THRESHOLD_GBPS: # 사용중이지 않은 것으로 간주
             self.regulated_speed = -1        
 
-        if current_speed < guaranteed_speed: # 침해 중
+        elif current_speed < guaranteed_speed: # 침해 중
             if self.regulated_speed == -1:
                 self.regulated_speed = self.host_bandwidth - guaranteed_speed
             else:
                 self.regulated_speed -= STEP_GBPS
         
-        if current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST: # 초과하여 사용 중
+        elif current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST: # 초과하여 사용 중
             if self.total_speed - self.current_speed > IGNORE_BW_THRESHOLD_GBPS: # 다른 것이 사용 중인 경우에
                 self.regulated_speed += STEP_GBPS
 
