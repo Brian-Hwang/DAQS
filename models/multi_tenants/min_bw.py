@@ -101,4 +101,5 @@ class MinBandwidthManager:
             
 
 if __name__ == "__main__":
-    MinBandwidthManager()
+    manager = MinBandwidthManager()
+    manager.start()
