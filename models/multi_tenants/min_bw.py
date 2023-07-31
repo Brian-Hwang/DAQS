@@ -15,7 +15,6 @@ MARGINAL_OFFEST = 0 # guaranteed에 대해서 적용할 마진값
 STEP_GBPS = 1 # 조정할 속도 단위
 
 
-
 class MinBandwidthManager:
 
     def __init__(self):
@@ -99,6 +98,8 @@ class MinBandwidthManager:
                 if vm in self.guaranteed_vms.keys():
                     continue
                 tc.set_bandwidth_limit(vm, self.vms[vm].iface, self.regulated_speed)
+
+        self.schedule_run()
             
 
 if __name__ == "__main__":
