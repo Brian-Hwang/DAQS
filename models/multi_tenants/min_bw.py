@@ -23,7 +23,7 @@ class MinBandwidthManager:
         self.host_bandwidth = host.get_bandwidth(self.host_interface)
 
         self.vms = {}
-
+        self.last_time = -1
         self.period = 1 # 주기 1초
         self.last_time = datetime.now()
         self.regulated_speed = -1
@@ -42,8 +42,9 @@ class MinBandwidthManager:
                 self.last_time += self.period
                 continue            
             time.sleep(self.period - (datetime.now() - self.last_time))
-            self.last_time = datetime.now()
-            self.run()
+            break
+        self.last_time = datetime.now()
+        self.run()
 
     
     def run(self):
