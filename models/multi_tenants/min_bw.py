@@ -42,7 +42,6 @@ class MinBandwidthManager:
                 continue            
             time.sleep((self.period - (datetime.datetime.now() - self.last_time)).total_seconds())
             break
-        print("run")
         self.last_time = datetime.datetime.now()
         self.run()
 
