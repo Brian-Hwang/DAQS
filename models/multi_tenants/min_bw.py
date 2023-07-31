@@ -65,14 +65,14 @@ class MinBandwidthManager:
 
         guaranteed_speed = 0
         for name, spd in self.guaranteed_vms:
-            if name in vms.keys:
+            if name in vms.keys():
                 guaranteed_speed += spd
         
         current_speed = 0       
         total_speed = 0
         for vm in vms:
             spd = self.vms[vm].get_tx_speed_mbps() / (2.0**10) # Gbps
-            if vm in self.guaranteed_vms.keys:
+            if vm in self.guaranteed_vms.keys():
                 # guaranteed vm
                 current_speed += spd
                 total_speed += spd
@@ -95,7 +95,7 @@ class MinBandwidthManager:
 
         if self.regulated_speed > 0:
             for vm in vms:
-                if vm in self.guaranteed_vms.keys:
+                if vm in self.guaranteed_vms.keys():
                     continue
                 tc.set_bandwidth_limit(vm, self.vms[vm].iface, self.regulated_speed)
             
