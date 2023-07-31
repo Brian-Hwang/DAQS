@@ -26,8 +26,8 @@ class GuestManager:
         if last_bytes == -1:
             return -1
         
-        time_diff = (self.last_time - last_time).seconds
+        time_diff = (self.last_time - last_time).milliseconds
         bytes_diff = self.last_bytes - last_bytes
-        return float(bytes_diff) / float(time_diff)
+        return float(bytes_diff) / (float(time_diff) / 1000.0)
     
         
