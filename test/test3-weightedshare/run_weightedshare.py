@@ -5,8 +5,8 @@ import subprocess
 import utils.guest_agent as guest_agent
 import utils.host_utils as host
 import utils.read_config as cfg
-import models.multi_tenants.fair_share as fair_share
-test_name = "test2-fairshare"
+import models.multi_tenants.weighted_share as weighted_share
+test_name = "test2-weightedshare"
 
 
 def N_vs_N():
@@ -80,7 +80,8 @@ def N_vs_1():
 
 
 def main():
-    thread = threading.Thread(target=fair_share.fair_share_vm_bandwidth)
+    thread = threading.Thread(
+        target=weighted_share.weighted_share_vm_bandwidth)
     thread.start()
 
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
