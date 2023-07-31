@@ -16,18 +16,18 @@ class GuestManager:
         Returns -1 for the first call
         """
 
-        last_time = self.last_time
-        last_bytes = self.last_bytes
+        prev_time = self.last_time
+        prev_bytes = self.last_bytes
 
         # Get the current transmitted gbits
         self.last_time = datetime.now()
         self.last_bytes = guest_utils.check_tx_gbits(self.name, self.iface)
 
-        if last_bytes == -1:
+        if prev_bytes == -1:
             return -1
         
-        time_diff = (self.last_time - last_time).milliseconds
-        bytes_diff = self.last_bytes - last_bytes
-        return float(bytes_diff) / (float(time_diff) / 1000.0)
+        time_diff = (self.last_time - prev_time).total_seconds()
+        bytes_diff = self.last_bytes - prev_bytes
+        return float(bytes_diff) / float(time_diff)
     
         
