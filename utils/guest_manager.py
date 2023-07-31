@@ -28,6 +28,6 @@ class GuestManager:
         
         time_diff = (self.last_time - last_time).microseconds
         bytes_diff = self.last_bytes - last_bytes
-        return float(bytes_diff) / 2.0**(20-3) / float(time_diff) * 1000000.0
+        return float(bytes_diff) / 2.0**(20-3) / (float(time_diff) * 1000000.0)
     
         
