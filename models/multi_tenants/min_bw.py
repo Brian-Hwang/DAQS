@@ -25,12 +25,12 @@ class MinBandwidthManager:
         self.vms = {}
 
         self.period = 1 # 주기 1초
-        self.last_time = datetime.time()
+        self.last_time = datetime.now()
         self.regulated_speed = -1
         self.guaranteed_vms = cfg.read_guaranteed_vms()
 
     def start(self):
-        self.last_time = datetime.time()
+        self.last_time = datetime.now()
         self.run()
 
 
@@ -38,11 +38,11 @@ class MinBandwidthManager:
         # 주기적으로 실행하게끔 시간 보정
         while True:
             # 이미 주기가 지났다면 한 주기 더 대기
-            if datetime.time() - self.last_time > self.period:
+            if datetime.now() - self.last_time > self.period:
                 self.last_time += self.period
                 continue            
-            time.sleep(self.period - (datetime.time() - self.last_time))
-            self.last_time = datetime.time()
+            time.sleep(self.period - (datetime.now() - self.last_time))
+            self.last_time = datetime.now()
             self.run()
 
     
