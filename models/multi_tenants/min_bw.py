@@ -29,6 +29,8 @@ class MinBandwidthManager:
         self.guaranteed_vms = cfg.read_guaranteed_vms()
         self.running = False
 
+        print(f"Manager init. Guaranteed VMs: {self.guaranteed_vms}")
+
     def start(self):
         self.last_time = datetime.datetime.now()
         self.schedule_run()
@@ -71,6 +73,8 @@ class MinBandwidthManager:
         for name, spd in self.guaranteed_vms:
             if name in vms.keys():
                 guaranteed_speed += spd
+
+        print(f"Goal guaranteed speed: {guaranteed_speed}")
         
         current_speed = 0       
         total_speed = 0
