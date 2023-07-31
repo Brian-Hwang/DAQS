@@ -20,7 +20,7 @@ class MinBandwidthManager:
 
     def __init__(self):
         self.host_interface = cfg.read_host_interface()
-        self.host_bandwidth = self.host_interface.get_bandwidth(self.host_interface)
+        self.host_bandwidth = host.get_bandwidth(self.host_interface)
 
         self.vms = {}
 
