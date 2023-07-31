@@ -50,3 +50,10 @@ def read_guest_base_directory():
     config = read_from_config('default.ini')
     base_directory = config.get('DEFAULT', 'guest_base_directory')
     return base_directory
+
+
+def read_guaranteed_vms():
+    config = read_from_config('min_bw.ini')
+    guaranteed = {key: config.getint('DEFAULT', key)
+                for key in config['DEFAULT']}
+    return guaranteed
