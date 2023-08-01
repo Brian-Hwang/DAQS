@@ -1,5 +1,6 @@
 import argparse
 import subprocess
+import time
 import os
 import re
 
@@ -39,6 +40,19 @@ parser.add_argument("-e", "--end_value", default=default_values["end_value"], ty
 
 args = parser.parse_args()
 
+# join the base directory and the filename to get the full path
+output_file = os.path.join(args.base_dir, "results.txt")
+
+# check if file exists then delete it
+if os.path.isfile(output_file):
+    try:
+        os.remove(output_file)
+    except Exception as e:
+        print(f"Error while deleting file {output_file}. Error message: {e}")
+else:
+    print(f"The file '{output_file}' does not exist.")
+
+
 # Outer loop for TEST_TIMES times execution
 for j in range(1, args.test_times + 1):
     # Inner loop
@@ -68,10 +82,8 @@ for j in range(1, args.test_times + 1):
         # Convert bandwidth (assumed to be in Mbits/sec) to a number
         bandwidth_num = float(re.sub('[A-Za-z]*', '', bandwidth))
 
-        # Output file
-        output_file = os.path.join(args.base_dir, "results.txt")
-
         # Write bandwidth to file
         with open(output_file, 'a') as f:
             f.write(
                 f"Bandwidth for {args.loop_on}={i}, iteration {j}: {bandwidth_num} Gbits/sec\n")
+    time.sleep(1)

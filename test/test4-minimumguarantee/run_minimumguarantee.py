@@ -5,8 +5,8 @@ import subprocess
 import utils.guest_agent as guest_agent
 import utils.host_utils as host
 import utils.read_config as cfg
-import models.multi_tenants.weighted_share as weighted_share
-test_name = "test3-weightedshare"
+import models.multi_tenants.minimum_guarantee as minimum_guarantee
+test_name = "test4-minimumguarantee"
 
 
 def N_vs_N():
@@ -20,8 +20,8 @@ def N_vs_N():
     for vm_name in vm_names:
         guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py &")
 
-    # Wait for 25 minutes
-    time.sleep(25 * 60)
+    # Wait for 30 minutes
+    time.sleep(30 * 60)
 
     host_base_path = cfg.read_host_base_directory()
 
@@ -41,7 +41,7 @@ def N_vs_N():
                         f"{host_base_path}/test/{test_name}/results/result_{vm_name}_{current_function_name}.csv"])
 
 
-def N_vs_1():
+def N_vs_one():
     guest_base_path = cfg.read_guest_base_directory()
 
     vm_names = host.get_running_vms()
@@ -79,9 +79,47 @@ def N_vs_1():
                         f"{host_base_path}/test/{test_name}/results/result_{vm_name}_{current_function_name}.csv"])
 
 
+def one_vs_N():
+    guest_base_path = cfg.read_guest_base_directory()
+
+    vm_names = host.get_running_vms()
+    if vm_names is None:
+        return
+
+    counter = 0
+    for vm_name in vm_names:
+        counter += 1
+        if counter % 2 == 1:
+            guest_agent.exec(
+                vm_name, f"python3 {guest_base_path}/iperf_test.py &")
+        if counter % 2 == 0:
+            guest_agent.exec(
+                vm_name, f"python3 {guest_base_path}/iperf_test.py -l nothing &")
+
+    # Wait for 30 minutes
+    time.sleep(30 * 60)
+
+    host_base_path = cfg.read_host_base_directory()
+
+    current_file_name = __file__
+    current_function_name = inspect.currentframe().f_code.co_name
+
+    for vm_name in vm_names:
+        # Read the result from the VM
+        result = guest_agent.read_file(
+            vm_name, f"{guest_base_path}/results.txt")
+
+        # Save the result to a file
+        with open(f"{host_base_path}/test/{test_name}/results/results.txt", 'w') as file:
+            file.write(result)
+
+        subprocess.run(["python3", host_base_path + "/test/scripts/to_csv.py", "-i", f"{host_base_path}/test/{test_name}/results/results.txt", "-o",
+                        f"{host_base_path}/test/{test_name}/results/result_{vm_name}_{current_function_name}.csv"])
+
+
 def main():
     thread = threading.Thread(
-        target=weighted_share.weighted_share_vm_bandwidth)
+        target=minimum_guarantee.minimum_guarantee_vm_bandwidth)
     thread.start()
 
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
@@ -94,7 +132,8 @@ def main():
         guest_agent.copy_file(vm_name, iperf_test_file_path, guest_file_path)
 
     N_vs_N()
-    N_vs_1()
+    N_vs_one()
+    one_vs_N()
 
 
 if __name__ == "__main__":
