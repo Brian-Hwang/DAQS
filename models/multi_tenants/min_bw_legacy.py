@@ -114,8 +114,8 @@ class MinBandwidthManager:
                 self.regulated_speed = self.host_bandwidth - guaranteed_speed
             else:
                 self.regulated_speed -= STEP_GBPS
-                if self.regulated_speed <= 0: # 0 이하의 경우 TC 제거하도록
-                    self.regulated_speed = -1
+                if self.regulated_speed <= 1: # 1 이하의 경우 1로 설정 (최소 연결 보장)
+                    self.regulated_speed = 1
         
         elif current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST: # 초과하여 사용 중, Best-Effort VM에 더 관대한 TC 적용
             if total_speed - current_speed > IGNORE_BW_THRESHOLD_GBPS: # 다른 VM들이 충분히 사용 중인 경우에만 적용
