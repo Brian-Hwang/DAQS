@@ -24,12 +24,12 @@ def get_current_and_previous_tx(vm_name, iface, prev_time, prev_bytes):
     return current_time, current_bytes, speed
 
 
-def calculate_regulated_speed(current_speed, guaranteed_speed, host_bandwidth, total_speed, regulated_speed):
+def calculate_regulated_speed(current_speed, total_guaranteed_speed, host_bandwidth, total_speed, regulated_speed):
     if current_speed < IGNORE_BW_THRESHOLD_GBPS:
         regulated_speed = -1
-    elif current_speed < guaranteed_speed:
+    elif current_speed < total_guaranteed_speed:
         if regulated_speed == -1:
-            regulated_speed = host_bandwidth - guaranteed_speed
+            regulated_speed = host_bandwidth - total_guaranteed_speed
         else:
             if host_bandwidth * TOLERANT_USAGE_RATE <= total_speed:
                 regulated_speed -= STEP_GBPS
@@ -39,7 +39,7 @@ def calculate_regulated_speed(current_speed, guaranteed_speed, host_bandwidth, t
                 regulated_speed += STEP_GBPS
                 if regulated_speed > host_bandwidth:
                     regulated_speed = host_bandwidth
-    elif current_speed > guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST:
+    elif current_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST:
         if total_speed - current_speed > IGNORE_BW_THRESHOLD_GBPS:
             regulated_speed += STEP_GBPS
             if regulated_speed > host_bandwidth:
@@ -69,15 +69,15 @@ def manage_single_vm_bandwidth(vm, interfaces, guaranteed_vms, prev_times, prev_
     return current_speed, total_speed
 
 
-def limit_vm_bandwidth_minimum_guarantee(vm_names, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes):
-    running_vms = host.get_running_vms()
+def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes):
+
     if running_vms is None:
         return initialized_vms, regulated_speed
 
-    guaranteed_speed = 0
-    for name, spd in guaranteed_vms.items():
-        if name in running_vms:
-            guaranteed_speed += spd
+    total_guaranteed_speed = 0
+    for guaranteed_vm, guaranteed_speed in guaranteed_vms.items():
+        if guaranteed_vm in running_vms:
+            total_guaranteed_speed += guaranteed_speed
 
     current_speed = 0
     total_speed = 0
@@ -90,7 +90,7 @@ def limit_vm_bandwidth_minimum_guarantee(vm_names, interfaces, host_bandwidth, g
                 vm, interfaces, guaranteed_vms, prev_times, prev_bytes)
 
     regulated_speed = calculate_regulated_speed(
-        current_speed, guaranteed_speed, host_bandwidth, total_speed, regulated_speed)
+        current_speed, total_guaranteed_speed, host_bandwidth, total_speed, regulated_speed)
 
     for vm in running_vms:
         apply_traffic_control(vm, interfaces, guaranteed_vms,
