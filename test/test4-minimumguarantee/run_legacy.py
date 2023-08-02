@@ -18,7 +18,8 @@ def N_vs_N():
         return
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py &")
+        guest_agent.exec(
+            vm_name, f"python3 {guest_base_path}/iperf_test.py -t 1 &")
 
     # Wait for 30 minutes
     time.sleep(30 * 60)
@@ -119,7 +120,7 @@ def one_vs_N():
 
 def main():
     thread = threading.Thread(
-        target = min_bw_legacy.run_min_bw)
+        target=min_bw_legacy.run_min_bw)
     thread.start()
 
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"

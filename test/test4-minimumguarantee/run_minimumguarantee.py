@@ -18,7 +18,8 @@ def N_vs_N():
         return
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py &")
+        guest_agent.exec(
+            vm_name, f"python3 {guest_base_path}/iperf_test.py -t 1 &")
 
     # Wait for 30 minutes
     time.sleep(30 * 60)
