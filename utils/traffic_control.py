@@ -32,7 +32,7 @@ def delete_class_bandwidth(vm_name, interface):
     """
     Deletes the bandwidth limit of class 1 traffic on a VM's network interface.
     """
-    command = f"sudo tc class del dev {interface} classid 1:1"
+    command = f"sudo tc class del dev {interface} classid 1:10"
     guest_agent.exec(vm_name, command)
 
 

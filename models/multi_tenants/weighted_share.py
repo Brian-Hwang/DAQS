@@ -34,12 +34,12 @@ def weighted_share_vm_bandwidth():
     host_interface = cfg.read_host_interface()
     host_bandwidth = host.get_bandwidth(host_interface)
 
-    payments = cfg.read_payments()
-
     prev_vm_names = set()
     initialized_vms = set()
 
     while True:
+
+        payments = cfg.read_payments()
         start_time = time.perf_counter()
 
         vm_names = host.get_running_vms()
