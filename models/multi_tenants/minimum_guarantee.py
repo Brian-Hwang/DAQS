@@ -57,6 +57,8 @@ def apply_traffic_control(vm, interfaces, guaranteed_vms, regulated_speed, host_
 
 
 def manage_single_vm_bandwidth(vm, interfaces, guaranteed_vms, prev_times, prev_bytes):
+    current_speed = 0
+    total_speed = 0
     prev_times[vm], prev_bytes[vm], speed = get_current_and_previous_tx(
         vm, interfaces[vm], prev_times[vm], prev_bytes[vm])
     if vm in guaranteed_vms.keys():
