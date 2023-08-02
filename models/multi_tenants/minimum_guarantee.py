@@ -5,7 +5,7 @@ import utils.guest_utils as guest
 import utils.host_utils as host
 import utils.read_config as cfg
 
-MONITOR_PERIOD = datetime.timedelta(milliseconds=0.1)
+MONITOR_PERIOD = datetime.timedelta(milliseconds=100)
 IGNORE_BW_THRESHOLD_GBPS = 1
 MARGINAL_RATE = 1
 MARGINAL_OFFEST = 1
