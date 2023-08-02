@@ -24,9 +24,9 @@ def do_test(args):
     print(f"Start test for {vm_names}...")
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s 1 -e 5 -t 3 -u 60 &")
+        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s 1 -e 5 -t 5 -u 60 &")
 
-    time.sleep(60 + 1)
+    time.sleep(60*5*5 + 10)
 
     print("Test finished. Collecting results...")
 
