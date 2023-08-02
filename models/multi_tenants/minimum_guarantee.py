@@ -92,7 +92,9 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
     regulated_speed = calculate_regulated_speed(
         current_total_guaranteed_speed, total_guaranteed_speed, host_bandwidth, current_total_speed, regulated_speed)
 
-    print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \nTotal Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
+    print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
+          "Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
+          "Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
 
     for vm in running_vms:
         apply_traffic_control(vm, interfaces, guaranteed_vms,
