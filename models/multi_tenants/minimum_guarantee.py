@@ -10,7 +10,7 @@ IGNORE_BW_THRESHOLD_GBPS = 1
 MARGINAL_RATE = 1
 MARGINAL_OFFEST = 1
 STEP_GBPS = 0.4
-TOLERANT_USAGE_RATE = 1.0 - (1-((2**30)/(10**6)))*2
+TOLERANT_USAGE_RATE = 1.0 - (1-((2**30)/(10**9)))*2
 
 
 def get_current_time_and_gbits(vm_name, iface, prev_time, prev_bytes):
