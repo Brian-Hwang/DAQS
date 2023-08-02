@@ -8,7 +8,7 @@ import utils.read_config as cfg
 MONITOR_PERIOD = datetime.timedelta(milliseconds=100)
 IGNORE_BW_THRESHOLD_GBPS = 1
 MARGINAL_RATE = 1
-MARGINAL_OFFEST = 1
+MARGINAL_OFFSET = 1
 STEP_GBPS = 0.1
 TOLERANT_USAGE_RATE = 1.0 - (1-((2**30)/(10**9)))*2
 
@@ -49,7 +49,7 @@ def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, 
                 regulated_speed = get_fasten_speed(regulated_speed, STEP_GBPS)
             elif host_bandwidth * TOLERANT_USAGE_RATE > current_total_speed + STEP_GBPS:
                 regulated_speed = get_loosen_speed(regulated_speed, STEP_GBPS, host_bandwidth)
-    elif current_guaranteed_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST:
+    elif current_guaranteed_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFSET:
         if current_total_speed - current_guaranteed_speed > IGNORE_BW_THRESHOLD_GBPS:
             regulated_speed = get_loosen_speed(regulated_speed, STEP_GBPS, host_bandwidth)
     return regulated_speed
