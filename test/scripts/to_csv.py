@@ -15,7 +15,7 @@ def convert_txt_to_csv(txt_file_path, csv_file_path):
         for line in file:
             # Regular expression to extract parallel, iteration, and bandwidth
             match = re.match(
-                r'Bandwidth for parallel=(\d+), iteration (\d+): (\d+\.\d+) Gbits/sec', line)
+                r'Bandwidth for \w+=(\d+), iteration (\d+): (\d+\.\d+) Gbits/sec', line)
             if match:
                 parallel = int(match.group(1))
                 iteration = int(match.group(2))
