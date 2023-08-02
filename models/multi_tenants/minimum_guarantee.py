@@ -128,13 +128,13 @@ def minimum_guarantee_vm_bandwidth():
                         break
                     except TypeError:
                         print(f"VM {vm_name} is not fully ready. Waiting...")
-                        time.sleep(1)
             initialized_vms = running_vms
 
         initialized_vms, regulated_speed = limit_vm_bandwidth_minimum_guarantee(
             running_vms, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes)
         elapsed_time = time.perf_counter() - start_time
         sleep_time = max(0, MONITOR_PERIOD.total_seconds() - elapsed_time)
+        print(f"Elapsed time: {elapsed_time}, sleep {sleep_time} seconds.")
         time.sleep(sleep_time)
 
 
