@@ -20,19 +20,34 @@ def add_queue_discipline(vm_name, interface):
     guest_agent.exec(vm_name, command)
 
 
-def limit_class_bandwidth(vm_name, interface, bw_limit):
+def limit_class_bandwidth_mbps(vm_name, interface, bw_limit):
     """
-    Limits the bandwidth of class 1 traffic on a VM's network interface.
+    Limits the bandwidth of class 1 traffic on a VM's network interface, in Mbps.
+    """
+    command = f"sudo tc class add dev {interface} parent 1:1 classid 1:10 htb rate {bw_limit}Mbit"
+    guest_agent.exec(vm_name, command)
+
+
+def limit_class_bandwidth_gbps(vm_name, interface, bw_limit):
+    """
+    Limits the bandwidth of class 1 traffic on a VM's network interface, in Gbps.
     """
     command = f"sudo tc class add dev {interface} parent 1:1 classid 1:10 htb rate {bw_limit}Gbit"
     guest_agent.exec(vm_name, command)
+
+
+def limit_class_bandwidth(vm_name, interface, bw_limit):  # legacy, Gbps
+    """
+    Limits the bandwidth of class 1 traffic on a VM's network interface.
+    """
+    limit_class_bandwidth
 
 
 def delete_class_bandwidth(vm_name, interface):
     """
     Deletes the bandwidth limit of class 1 traffic on a VM's network interface.
     """
-    command = f"sudo tc class del dev {interface} classid 1:10"
+    command = f"sudo tc class del dev {interface} classid 1:1"
     guest_agent.exec(vm_name, command)
 
 
@@ -44,7 +59,11 @@ def initialize(vm_name, interface):
     add_queue_discipline(vm_name, interface)
 
 
-def set_bandwidth_limit(vm_name, interface, bw_limit, is_initialized=False):
+def set_bandwidth_limit(vm_name, interface, bw_limit, is_initialized=False):  # legacy, Gbps
+    set_bandwidth_limit(vm_name, interface, bw_limit, is_initialized)
+
+
+def set_bandwidth_limit_gbps(vm_name, interface, bw_limit, is_initialized=False):
     """
     Limits the bandwidth of a VM's network interface.
     If the VM has not been initialized, it initializes the VM first.
@@ -53,4 +72,16 @@ def set_bandwidth_limit(vm_name, interface, bw_limit, is_initialized=False):
         initialize(vm_name, interface)
     else:
         delete_class_bandwidth(vm_name, interface)
-    limit_class_bandwidth(vm_name, interface, bw_limit)
+    limit_class_bandwidth_gbps(vm_name, interface, bw_limit)
+
+
+def set_bandwidth_limit_mbps(vm_name, interface, bw_limit, is_initialized=False):
+    """
+    Limits the bandwidth of a VM's network interface.
+    If the VM has not been initialized, it initializes the VM first.
+    """
+    if not is_initialized:
+        initialize(vm_name, interface)
+    else:
+        delete_class_bandwidth(vm_name, interface)
+    limit_class_bandwidth_mbps(vm_name, interface, bw_limit)

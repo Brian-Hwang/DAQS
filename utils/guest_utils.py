@@ -34,19 +34,34 @@ def check_tx_gbits(vm_name, interface):
     return tx_gbits
 
 
-def get_tx_speed_mbps(prev_time, prev_bytes, current_time, current_bytes):
+def get_tx_speed_mbps(prev_time, prev_gbits, current_time, current_gbits):
     """
     Calculates the speed data transmitted by a VM's network interface in Mbps.
     Speed is calculated between the last call and the current call.
-    Returns -1 if prev_bytes is -1
+    Returns -1 if prev_gbits is -1
     """
 
-    if prev_bytes == -1:
+    if prev_gbits == -1:
         return -1
 
     time_diff = (current_time - prev_time).total_seconds()
-    bytes_diff = current_bytes - prev_bytes
-    return float(bytes_diff) / float(time_diff) * 1000.0  # calculate Mbps
+    gbits_diff = current_gbits - prev_gbits
+    return float(gbits_diff) / float(time_diff) * 1000.0  # calculate Mbps
+
+
+def get_tx_speed_gbps(prev_time, prev_gbits, current_time, current_gbits):
+    """
+    Calculates the speed data transmitted by a VM's network interface in Gbps.
+    Speed is calculated between the last call and the current call.
+    Returns -1 if prev_gbits is -1
+    """
+
+    if prev_gbits == -1:
+        return -1
+
+    time_diff = (current_time - prev_time).total_seconds()
+    gbits_diff = current_gbits - prev_gbits
+    return float(gbits_diff) / float(time_diff)
 
 
 def print_gbits(vm_name, interface, condition, next_condition):

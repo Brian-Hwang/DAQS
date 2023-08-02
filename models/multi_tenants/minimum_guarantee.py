@@ -15,32 +15,32 @@ TOLERANT_USAGE_RATE = 1.0 - 0.07*2
 
 def get_current_and_previous_tx(vm_name, iface, prev_time, prev_bytes):
     current_time = datetime.datetime.now()
-    current_bytes = guest.check_tx_bytes(vm_name, iface)
+    current_gbits = guest.check_tx_gbits(vm_name, iface)
     if prev_bytes == -1:
         speed = -1
     else:
-        speed = guest.get_tx_speed_mbps(
-            prev_time, prev_bytes, current_time, current_bytes)
-    return current_time, current_bytes, speed
+        speed = guest.get_tx_speed_gbps(
+            prev_time, prev_bytes, current_time, current_gbits)
+    return current_time, current_gbits, speed
 
 
-def calculate_regulated_speed(current_speed, total_guaranteed_speed, host_bandwidth, total_speed, regulated_speed):
-    if current_speed < IGNORE_BW_THRESHOLD_GBPS:
+def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, host_bandwidth, current_total_speed, regulated_speed):
+    if current_guaranteed_speed < IGNORE_BW_THRESHOLD_GBPS:
         regulated_speed = -1
-    elif current_speed < total_guaranteed_speed:
+    elif current_guaranteed_speed < total_guaranteed_speed:
         if regulated_speed == -1:
             regulated_speed = host_bandwidth - total_guaranteed_speed
         else:
-            if host_bandwidth * TOLERANT_USAGE_RATE <= total_speed:
+            if host_bandwidth * TOLERANT_USAGE_RATE <= current_total_speed:
                 regulated_speed -= STEP_GBPS
                 if regulated_speed <= 1:
                     regulated_speed = 1
-            elif host_bandwidth * TOLERANT_USAGE_RATE > total_speed + STEP_GBPS:
+            elif host_bandwidth * TOLERANT_USAGE_RATE > current_total_speed + STEP_GBPS:
                 regulated_speed += STEP_GBPS
                 if regulated_speed > host_bandwidth:
                     regulated_speed = host_bandwidth
-    elif current_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST:
-        if total_speed - current_speed > IGNORE_BW_THRESHOLD_GBPS:
+    elif current_guaranteed_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFEST:
+        if current_total_speed - current_guaranteed_speed > IGNORE_BW_THRESHOLD_GBPS:
             regulated_speed += STEP_GBPS
             if regulated_speed > host_bandwidth:
                 regulated_speed = host_bandwidth
@@ -53,24 +53,24 @@ def apply_traffic_control(vm, interfaces, guaranteed_vms, regulated_speed, host_
     if regulated_speed == -1 or regulated_speed >= host_bandwidth:
         tc.delete_queue_discipline(vm, interfaces[vm])
     elif regulated_speed > 0:
-        tc.set_bandwidth_limit(vm, interfaces[vm], regulated_speed * (2.0**10))
+        tc.set_bandwidth_limit_mbps(
+            vm, interfaces[vm], regulated_speed * (2.0**10))
 
 
-def manage_single_vm_bandwidth(vm, interfaces, guaranteed_vms, prev_times, prev_bytes):
-    current_speed = 0
-    total_speed = 0
-    prev_times[vm], prev_bytes[vm], speed = get_current_and_previous_tx(
-        vm, interfaces[vm], prev_times[vm], prev_bytes[vm])
-    if vm in guaranteed_vms.keys():
-        current_speed += speed
-        total_speed += speed
-    else:
-        total_speed += speed
-    return current_speed, total_speed
+# def get_current_bandwidth(vm, interfaces, guaranteed_vms, prev_times, prev_bytes):
+#     current_guaranteed_speed = 0
+#     current_total_speed = 0
+#     prev_times[vm], prev_bytes[vm], speed = get_current_and_previous_tx(
+#         vm, interfaces[vm], prev_times[vm], prev_bytes[vm])
+#     if vm in guaranteed_vms.keys():
+#         current_guaranteed_speed += speed
+#         current_total_speed += speed
+#     else:
+#         current_total_speed += speed
+#     return current_guaranteed_speed, current_total_speed
 
 
 def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes):
-
     if running_vms is None:
         return initialized_vms, regulated_speed
 
@@ -79,18 +79,25 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
         if guaranteed_vm in running_vms:
             total_guaranteed_speed += guaranteed_speed
 
-    current_speed = 0
-    total_speed = 0
+    current_total_guaranteed_speed = 0
+    current_total_speed = 0
     for vm in running_vms:
         if vm not in prev_times:
             prev_times[vm] = datetime.datetime.now()
             prev_bytes[vm] = guest.check_tx_bytes(vm, interfaces[vm])
         else:
-            current_speed, total_speed = manage_single_vm_bandwidth(
-                vm, interfaces, guaranteed_vms, prev_times, prev_bytes)
+            prev_times[vm], prev_bytes[vm], speed = get_current_and_previous_tx(
+                vm, interfaces[vm], prev_times[vm], prev_bytes[vm])
+            if vm in guaranteed_vms.keys():
+                current_total_guaranteed_speed += speed
+                current_total_speed += speed
+            else:
+                current_total_speed += speed
 
     regulated_speed = calculate_regulated_speed(
-        current_speed, total_guaranteed_speed, host_bandwidth, total_speed, regulated_speed)
+        current_total_guaranteed_speed, total_guaranteed_speed, host_bandwidth, current_total_speed, regulated_speed)
+
+    print(f"VMs: {running_vms}, GVM: {guaranteed_vms} Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
 
     for vm in running_vms:
         apply_traffic_control(vm, interfaces, guaranteed_vms,
