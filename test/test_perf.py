@@ -6,6 +6,7 @@ import multiprocessing
 import subprocess
 import utils.traffic_control as tc
 import utils.guest_agent as guest_agent
+import utils.guest_utils as guest
 import utils.host_utils as host
 import utils.read_config as cfg
 import models.multi_tenants.min_bw_legacy as min_bw_legacy
@@ -60,7 +61,6 @@ def main(args):
 
     restrict_vm_name = "ubuntu20.04-clone2"
     restrict_vm_iface = guest.get_last_network_interface(vm_name)
-    import utils.guest_utils as guest
     for tc_gbps in range(1, 30):
         tc.set_bandwidth_limit_mbps(
             restrict_vm_name, restrict_vm_iface, tc_gbps * (2.0**10))
