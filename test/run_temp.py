@@ -22,7 +22,7 @@ def do_test(args):
     print(f"Start test for {vm_names}...")
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {args.parallel} -e {args.parallel} -t {args.test_times} -u {args.duration} &")
+        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {args.parallel} -e {args.parallel} -t {args.test_times} -u {args.duration} -l parallel &")
 
     time.sleep(args.duration + 1)
 
