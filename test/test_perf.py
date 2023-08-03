@@ -34,7 +34,7 @@ def do_test(args):
         result = guest_agent.read_file(
             vm_name, f"{guest_base_path}/results.txt")
 
-        print(f"Result for {vm_name}: {result}")
+        print(f"Result for {vm_name}: \n{result}")
         # subprocess.run(["python3", host_base_path + "/test/scripts/to_csv.py", "-i", f"{host_base_path}/test/{test_name}/results/results.txt", "-o",
         #                f"{host_base_path}/test/{test_name}/results/result_{vm_name}_{current_function_name}.csv"])
 
