@@ -53,7 +53,8 @@ def main(args):
 
     restrict_vm_name = "ubuntu20.04-clone2"
     restrict_vm_iface = guest.get_last_network_interface(vm_name)
-    for tc_gbps in range(5, 9, 0.5):
+    for i in range(50, 90, 5):
+        tc_gbps = i / 10
         tc.set_bandwidth_limit_mbps(
             restrict_vm_name, restrict_vm_iface, tc_gbps * (2.0**10))
         print(f"{tc_gbps} Gbps limit: ")
