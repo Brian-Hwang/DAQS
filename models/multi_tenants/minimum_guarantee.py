@@ -43,7 +43,7 @@ def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, 
         regulated_speed = -1
     elif current_guaranteed_speed < total_guaranteed_speed:
         if regulated_speed == -1:
-            regulated_speed = host_bandwidth - total_guaranteed_speed
+            regulated_speed = host_bandwidth * TOLERANT_USAGE_RATE - total_guaranteed_speed
         else:
             if host_bandwidth * TOLERANT_USAGE_RATE <= current_total_speed:
                 regulated_speed = get_fasten_speed(regulated_speed, STEP_GBPS)
