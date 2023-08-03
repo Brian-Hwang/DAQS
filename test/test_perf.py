@@ -24,7 +24,7 @@ def do_test(args):
     for vm_name in vm_names:
         guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s 2 -e 2 -t 7 -u 120 &")
 
-    time.sleep(120*7*1 + 3)
+    time.sleep(120*7*1 + 10)
 
     current_file_name = __file__
     current_loc = os.path.dirname(os.path.abspath(current_file_name))
