@@ -1,41 +1,536 @@
-<mxfile host="app.diagrams.net" modified="2023-08-02T23:59:44.123Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Whale/3.21.192.22 Safari/537.36" etag="4iYLPlu7Xe8DlUcTkej-" version="21.6.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-03T02:58:21.599Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Whale/3.21.192.22 Safari/537.36" etag="AnSlWFpu5fQlXPsJBDFN" version="21.6.6" type="github">
   <diagram name="페이지-1" id="64NG9BpS-ZCnbfLsSaB-">
-    <mxGraphModel dx="2028" dy="1156" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1352" dy="771" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-1" value="HW" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="760" width="870" height="200" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-179" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3010" y="320" width="870" height="440" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-2" value="Virtual Machine Manager (VMM)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="390" y="520" width="530" height="120" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-136" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2089" y="380" width="831" height="380" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-6" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="40" y="240" width="160" height="120" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-172" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-136">
+          <mxGeometry x="-39" y="-60" width="870" height="440" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-3" value="VM1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-6">
+        <mxCell id="V--meJv0w2f8KCWXadES-137" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-136">
           <mxGeometry width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-5" value="VF Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-6">
+        <mxCell id="V--meJv0w2f8KCWXadES-138" value="vNIC Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-136">
           <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-33" value="VM1" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="750" y="240" width="160" height="120" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-139" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-136">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-27" value="VF Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="770" y="330" width="120" height="30" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-173" value="SW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V--meJv0w2f8KCWXadES-136">
+          <mxGeometry x="-39" y="-60" width="40" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-35" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="390" y="240" width="160" height="120" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-174" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="V--meJv0w2f8KCWXadES-136" source="V--meJv0w2f8KCWXadES-138" target="V--meJv0w2f8KCWXadES-139">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="351" y="410" as="sourcePoint" />
+            <mxPoint x="401" y="360" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-36" value="Host" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-35">
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="760" width="870" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-2" value="Virtual Machine Manager (VMM)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="274" y="558" width="620" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-6" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="112" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-3" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="NXMj8B4He7Qqxr7nqvNF-6" vertex="1">
           <mxGeometry width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-37" value="VF Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-35">
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-5" value="PF Driver" style="rounded=0;whiteSpace=wrap;html=1;" parent="NXMj8B4He7Qqxr7nqvNF-6" vertex="1">
           <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="NXMj8B4He7Qqxr7nqvNF-38" value="Parent Partition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="65" y="210" width="110" height="30" as="geometry" />
+        <mxCell id="V--meJv0w2f8KCWXadES-37" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-6">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-35" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="299" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-36" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="NXMj8B4He7Qqxr7nqvNF-35" vertex="1">
+          <mxGeometry width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-37" value="vNIC Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" parent="NXMj8B4He7Qqxr7nqvNF-35" vertex="1">
+          <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-38" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="NXMj8B4He7Qqxr7nqvNF-35">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-38" value="Parent Partition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="117" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fixDash=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="880" width="845" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-2" value="Virtual Ethernet Bridge + Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="97.5" y="1010" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-4" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="923" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-6" target="V--meJv0w2f8KCWXadES-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="80" y="510" as="sourcePoint" />
+            <mxPoint x="550" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-6" value="Physical Function&lt;br&gt;(PF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="102" y="923" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-14" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="730" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-33" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="V--meJv0w2f8KCWXadES-14" vertex="1">
+          <mxGeometry x="10" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="NXMj8B4He7Qqxr7nqvNF-27" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" parent="V--meJv0w2f8KCWXadES-14" vertex="1">
+          <mxGeometry x="30" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-39" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-14">
+          <mxGeometry x="30" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;strokeWidth=2;" edge="1" parent="1" source="NXMj8B4He7Qqxr7nqvNF-37" target="V--meJv0w2f8KCWXadES-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-22" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-2" target="V--meJv0w2f8KCWXadES-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="680" as="sourcePoint" />
+            <mxPoint x="570" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-23" value="PCI Express" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="830" width="845" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-24" value="IOMMU" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="770" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-18" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-4" target="NXMj8B4He7Qqxr7nqvNF-27">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="490" as="sourcePoint" />
+            <mxPoint x="820" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-25" value="NIC" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="55" y="880" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-27" value="Layer 2 Virtual Switch" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="284" y="593" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-28" value="PF Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="284" y="653" width="190" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-30" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-6" target="NXMj8B4He7Qqxr7nqvNF-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="680" as="sourcePoint" />
+            <mxPoint x="570" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-32" value="HW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="760" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-73" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="760" width="870" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-74" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="558" width="504" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-75" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1138" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-76" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-75">
+          <mxGeometry width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-77" value="PF Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-75">
+          <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-78" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-75">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-79" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1439" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-80" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-79">
+          <mxGeometry width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-81" value="vNIC Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-79">
+          <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-82" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-79">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-83" value="Parent Partition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1143" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-84" value="" style="rounded=0;whiteSpace=wrap;html=1;fixDash=0;" vertex="1" parent="1">
+          <mxGeometry x="1065" y="880" width="845" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-85" value="Virtual Ethernet Bridge + Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1107.5" y="1010" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-86" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1770" y="923" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.097;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-88" target="V--meJv0w2f8KCWXadES-85">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1090" y="510" as="sourcePoint" />
+            <mxPoint x="1560" y="660" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-88" value="Physical Function&lt;br&gt;(PF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1112" y="923" width="158" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-89" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1740" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-90" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-89">
+          <mxGeometry x="10" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-91" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-89">
+          <mxGeometry x="30" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-92" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-89">
+          <mxGeometry x="30" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-81" target="V--meJv0w2f8KCWXadES-99">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-94" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-85" target="V--meJv0w2f8KCWXadES-86">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1530" y="680" as="sourcePoint" />
+            <mxPoint x="1580" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-95" value="PCI Express" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1065" y="830" width="845" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-96" value="IOMMU" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="770" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-97" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-86" target="V--meJv0w2f8KCWXadES-91">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1710" y="490" as="sourcePoint" />
+            <mxPoint x="1830" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-98" value="NIC" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1065" y="880" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-99" value="Layer 2 Virtual Switch" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1424" y="610" width="190" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-100" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-88" target="V--meJv0w2f8KCWXadES-77">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1530" y="680" as="sourcePoint" />
+            <mxPoint x="1140" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-101" value="HW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="760" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-102" value="Virtual Machine Manager (VMM)" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1399" y="678" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-103" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-99" target="V--meJv0w2f8KCWXadES-77">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1530" y="680" as="sourcePoint" />
+            <mxPoint x="1580" y="630" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1248" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-134" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2050" y="760" width="870" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-135" value="Virtual Machine Manager (VMM)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2090" y="558" width="814" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-140" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2276" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-141" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-140">
+          <mxGeometry width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-142" value="vNIC Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-140">
+          <mxGeometry x="20" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-143" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-140">
+          <mxGeometry x="20" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-175" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="V--meJv0w2f8KCWXadES-140" source="V--meJv0w2f8KCWXadES-142" target="V--meJv0w2f8KCWXadES-143">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-97" y="100" as="sourcePoint" />
+            <mxPoint x="-97" y="50" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-144" value="Parent Partition" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2094" y="350" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-145" value="" style="rounded=0;whiteSpace=wrap;html=1;fixDash=0;" vertex="1" parent="1">
+          <mxGeometry x="2065" y="880" width="845" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-146" value="Virtual Ethernet Bridge + Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2107.5" y="1010" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-147" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2770" y="923" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-148" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-149">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2090" y="510" as="sourcePoint" />
+            <mxPoint x="2266" y="1010" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2266" y="1003" />
+              <mxPoint x="2266" y="1003" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-149" value="Physical Function&lt;br&gt;(PF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2112" y="923" width="308" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-150" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2740" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-151" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-150">
+          <mxGeometry x="10" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-152" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-150">
+          <mxGeometry x="30" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-153" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-150">
+          <mxGeometry x="30" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-177" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="V--meJv0w2f8KCWXadES-150" source="V--meJv0w2f8KCWXadES-152" target="V--meJv0w2f8KCWXadES-153">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-541" y="120" as="sourcePoint" />
+            <mxPoint x="-541" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-142" target="V--meJv0w2f8KCWXadES-160">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-155" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-146" target="V--meJv0w2f8KCWXadES-147">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2530" y="680" as="sourcePoint" />
+            <mxPoint x="2580" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-156" value="PCI Express" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2065" y="830" width="845" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-157" value="IOMMU" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2480" y="770" width="430" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-158" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-147" target="V--meJv0w2f8KCWXadES-152">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2710" y="490" as="sourcePoint" />
+            <mxPoint x="2830" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-159" value="NIC" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2065" y="880" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-160" value="Layer 2 Virtual Switch" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2150" y="593" width="230" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-161" value="PF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2150" y="653" width="230" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-162" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-149" target="V--meJv0w2f8KCWXadES-161">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2530" y="680" as="sourcePoint" />
+            <mxPoint x="2580" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-163" value="HW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="2050" y="760" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-164" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="2560" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-165" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-164">
+          <mxGeometry x="10" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-166" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-164">
+          <mxGeometry x="30" y="90" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-167" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V--meJv0w2f8KCWXadES-164">
+          <mxGeometry x="30" y="10" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-176" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="V--meJv0w2f8KCWXadES-164" source="V--meJv0w2f8KCWXadES-166" target="V--meJv0w2f8KCWXadES-167">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-371" y="110" as="sourcePoint" />
+            <mxPoint x="-371" y="60" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-168" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2590" y="922" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-169" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=2;" edge="1" parent="1" target="V--meJv0w2f8KCWXadES-168">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2651" y="1010" as="sourcePoint" />
+            <mxPoint x="2400" y="629" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-170" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-168">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="2530" y="489" as="sourcePoint" />
+            <mxPoint x="2650" y="499" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-171" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.25;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-138" target="V--meJv0w2f8KCWXadES-160">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="2200" y="500" as="sourcePoint" />
+            <mxPoint x="2333" y="603" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-185" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3010" y="760" width="870" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-193" value="" style="rounded=0;whiteSpace=wrap;html=1;fixDash=0;" vertex="1" parent="1">
+          <mxGeometry x="3025" y="880" width="845" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-194" value="Virtual Ethernet Bridge + Classifier" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3067.5" y="1010" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-195" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3730" y="923" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-204" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-194" target="V--meJv0w2f8KCWXadES-195">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3490" y="680" as="sourcePoint" />
+            <mxPoint x="3540" y="630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-205" value="PCI Express" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3025" y="830" width="845" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-206" value="IOMMU" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3027" y="790" width="840" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-208" value="NIC" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3025" y="880" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-212" value="HW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3010" y="760" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-218" value="Virtual Function&lt;br&gt;(VF)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3069" y="923" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-219" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.952;exitY=0.017;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3129" y="1011" as="sourcePoint" />
+            <mxPoint x="3128" y="983" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-180" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3049" y="350" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-181" value="Traffic Control" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3069" y="440" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-182" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3069" y="360" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-183" value="SW" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3010" y="320" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-184" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;strokeWidth=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-181" target="V--meJv0w2f8KCWXadES-182">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3400" y="760" as="sourcePoint" />
+            <mxPoint x="3450" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-186" value="" style="rounded=0;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="1">
+          <mxGeometry x="3050" y="540" width="814" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-232" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#CC6600;strokeWidth=2;dashed=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-223" target="V--meJv0w2f8KCWXadES-225">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-223" value="QoS Controller" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3385" y="710" width="120" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-224" value="VMM" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="3049" y="540" width="46" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-225" value="virtio-serial port" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3385" y="540" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-231" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-226" target="V--meJv0w2f8KCWXadES-223">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-226" value="SLA Configuration" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="3570" y="710" width="109" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-207" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startFill=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-195" target="V--meJv0w2f8KCWXadES-230">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3670" y="490" as="sourcePoint" />
+            <mxPoint x="3940" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-220" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;strokeWidth=1;startFill=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-218" target="V--meJv0w2f8KCWXadES-229">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3490" y="489" as="sourcePoint" />
+            <mxPoint x="3610" y="499" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-227" value="Qos Egresser&lt;br&gt;Qemu Guest Agent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3229" y="470" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-229" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3069" y="470" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-237" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#CC6600;strokeWidth=2;dashed=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-225" target="V--meJv0w2f8KCWXadES-227">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-199" value="" style="rounded=0;whiteSpace=wrap;html=1;container=0;" vertex="1" parent="1">
+          <mxGeometry x="3570" y="350" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-200" value="Traffic Control" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3730" y="440" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-201" value="TCP/IP" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3730" y="360" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-202" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=classic;startFill=1;strokeWidth=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-200" target="V--meJv0w2f8KCWXadES-201">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3159" y="470" as="sourcePoint" />
+            <mxPoint x="3159" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-228" value="Qos Egresser&lt;br&gt;Qemu Guest Agent" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="3570" y="470" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-230" value="VF Device Driver" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3730" y="470" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-235" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#CC6600;strokeWidth=2;dashed=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-225" target="V--meJv0w2f8KCWXadES-228">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-238" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#CC6600;dashed=1;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-227" target="V--meJv0w2f8KCWXadES-181">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3315" y="787" as="sourcePoint" />
+            <mxPoint x="3365" y="737" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3208" y="485" />
+              <mxPoint x="3208" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="V--meJv0w2f8KCWXadES-239" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#CC6600;dashed=1;strokeWidth=2;" edge="1" parent="1" source="V--meJv0w2f8KCWXadES-228" target="V--meJv0w2f8KCWXadES-200">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="3239" y="495" as="sourcePoint" />
+            <mxPoint x="3199" y="465" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="3710" y="485" />
+              <mxPoint x="3710" y="455" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
