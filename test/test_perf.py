@@ -21,14 +21,19 @@ def do_test(args):
     if vm_names is None:
         return
 
-    for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s 2 -e 2 -t 7 -u 120 &")
+    DURATION = 60
+    S = 2
+    E = 2
+    ITERATE = 1
 
-    time.sleep(120*7*1 + 10)
+    for vm_name in vm_names:
+        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {S} -e {E} -t {ITERATE} -u {DURATION} &")
+
+    time.sleep( (DURATION)*(E-S+1)*(ITERATE) + (ITERATE + 5))
 
     current_file_name = __file__
     current_loc = os.path.dirname(os.path.abspath(current_file_name))
- 
+
     for vm_name in vm_names:
         # Read the result from the VM
         result = guest_agent.read_file(
@@ -53,7 +58,7 @@ def main(args):
 
     restrict_vm_name = "ubuntu20.04-clone2"
     restrict_vm_iface = guest.get_last_network_interface(vm_name)
-    for i in range(10, 200, 5):
+    for i in range(5, 12, 5):
         tc_gbps = i / 10
         tc.set_bandwidth_limit_mbps(
             restrict_vm_name, restrict_vm_iface, tc_gbps * (2.0**10))
