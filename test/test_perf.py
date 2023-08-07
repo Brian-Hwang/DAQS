@@ -24,7 +24,7 @@ def do_test(args):
     DURATION = 30
     S = 2
     E = 2
-    ITERATE = 2
+    ITERATE = 5
 
     for vm_name in vm_names:
         guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {S} -e {E} -t {ITERATE} -u {DURATION} &")
@@ -58,7 +58,7 @@ def main(args):
 
     restrict_vm_name = "ubuntu20.04-clone2"
     restrict_vm_iface = guest.get_last_network_interface(vm_name)
-    for i in range(5, 120, 10):
+    for i in range(5, 160, 10):
         tc_gbps = i / 10
         tc.set_bandwidth_limit_mbps(
             restrict_vm_name, restrict_vm_iface, tc_gbps * (2.0**10))

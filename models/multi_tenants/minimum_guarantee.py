@@ -9,8 +9,8 @@ MONITOR_PERIOD = datetime.timedelta(milliseconds=100)
 IGNORE_BW_THRESHOLD_GBPS = 1
 MARGINAL_RATE = 1
 MARGINAL_OFFSET = 1
-STEP_GBPS = 0.1
-TOLERANT_USAGE_RATE = 1.0 - (1-((2**30)/(10**9)))*2
+STEP_GBPS = 0.2
+TOLERANT_USAGE_RATE = 1.0 - (((2**30)/(10**9))-1)*2
 
 
 def get_current_time_and_gbits(vm_name, iface, prev_time, prev_bytes):
@@ -111,6 +111,8 @@ def minimum_guarantee_vm_bandwidth():
     regulated_speed = -1
     prev_times = {}
     prev_bytes = {}
+
+    print(f"Tolerant rate: {TOLERANT_USAGE_RATE}")
 
     while True:
         start_time = time.perf_counter()

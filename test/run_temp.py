@@ -18,13 +18,16 @@ def do_test(args):
     vm_names = host.get_running_vms()
     if vm_names is None:
         return
-    
+
     print(f"Start test for {vm_names}...")
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {args.parallel} -e {args.parallel} -t {args.test_times} -u {args.duration} -l parallel &")
+        current_parallel = args.parallel
+        if vm_name in ["b1_vm1"]:
+            current_parallel = 2
+        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {current_parallel} -e {current_parallel} -t {args.test_times} -u {args.duration} -l parallel &")
 
-    time.sleep(args.duration + 1)
+    time.sleep(args.duration * args.test_times + (args.test_times + 1))
 
     print("Test finished. Collecting results...")
 
@@ -40,7 +43,7 @@ def do_test(args):
         with open(f"{current_loc}/test_tmp_result_{vm_name}.txt", 'w') as file:
             file.write(result)
 
-        print(f"Result for {vm_name}: {result}")
+        print(f"Result for {vm_name}: \n{result}")
         # subprocess.run(["python3", host_base_path + "/test/scripts/to_csv.py", "-i", f"{host_base_path}/test/{test_name}/results/results.txt", "-o",
         #                f"{host_base_path}/test/{test_name}/results/result_{vm_name}_{current_function_name}.csv"])
 
@@ -66,9 +69,9 @@ def main(args):
 
 # Default values
 default_values = {
-    "duration": 60,
-    "parallel": 1,
-    "test_times": 1,
+    "duration": 120,
+    "parallel": 5,
+    "test_times": 10,
 }
 
 if __name__ == "__main__":

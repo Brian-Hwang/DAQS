@@ -31,7 +31,7 @@ def parse_bandwidth_data(data):
 
     return category_data, max_iterations
 
-with open('perf_rslt.txt', 'r') as file:
+with open('result_raw.txt', 'r') as file:
     data = file.read()
 
 category_data, max_iterations = parse_bandwidth_data(data)
