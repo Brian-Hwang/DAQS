@@ -18,10 +18,11 @@ def N_vs_N():
         return
 
     for vm_name in vm_names:
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py &")
+        guest_agent.exec(
+            vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -s 5 -e 5 -t 10&")
 
     # Wait for 25 minutes
-    time.sleep(25 * 60)
+    time.sleep(13 * 120)
 
     host_base_path = cfg.read_host_base_directory()
 
@@ -52,10 +53,10 @@ def N_vs_1():
         counter += 1
         if counter % 2 == 0:
             guest_agent.exec(
-                vm_name, f"python3 {guest_base_path}/iperf_test.py &")
+                vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.26 -s 5 -e 5 -t 10 &")
         if counter % 2 == 1:
             guest_agent.exec(
-                vm_name, f"python3 {guest_base_path}/iperf_test.py -l nothing &")
+                vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.27 -s 2 -e 2 -t 10 &")
 
     # Wait for 30 minutes
     time.sleep(30 * 60)
@@ -87,7 +88,7 @@ def main():
     for vm_name in vm_names:
         guest_agent.copy_file(vm_name, iperf_test_file_path, guest_file_path)
 
-    N_vs_N()
+    # N_vs_N()
     N_vs_1()
 
 
