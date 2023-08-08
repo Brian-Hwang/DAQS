@@ -48,18 +48,16 @@ def N_vs_1():
     if vm_names is None:
         return
 
-    counter = 0
     for vm_name in vm_names:
-        counter += 1
-        if counter % 2 == 0:
+        if vm_name != "b1_vm1":
             guest_agent.exec(
                 vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.26 -s 5 -e 5 -t 10 &")
-        if counter % 2 == 1:
+        else:
             guest_agent.exec(
                 vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.27 -s 2 -e 2 -t 10 &")
 
     # Wait for 30 minutes
-    time.sleep(30 * 60)
+    time.sleep(23 * 60)
 
     host_base_path = cfg.read_host_base_directory()
 

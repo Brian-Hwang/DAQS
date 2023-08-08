@@ -25,7 +25,11 @@ def do_test(args):
         current_parallel = args.parallel
         if vm_name in ["b1_vm1"]:
             current_parallel = 2
-        guest_agent.exec(vm_name, f"python3 {guest_base_path}/iperf_test.py -s {current_parallel} -e {current_parallel} -t {args.test_times} -u {args.duration} -l parallel &")
+            ip = "20.0.1.26"
+        else:
+            ip = "20.0.1.27"
+        guest_agent.exec(
+            vm_name, f"python3 {guest_base_path}/iperf_test.py -i {ip} -s {current_parallel} -e {current_parallel} -t {args.test_times} -u {args.duration} -l parallel &")
 
     time.sleep(args.duration * args.test_times + (args.test_times + 1))
 
@@ -52,7 +56,7 @@ def do_test(args):
 
 def main(args):
     proc = multiprocessing.Process(
-        target = minimum_guarantee.minimum_guarantee_vm_bandwidth, args = ())
+        target=minimum_guarantee.minimum_guarantee_vm_bandwidth, args=())
     proc.start()
 
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
@@ -66,6 +70,7 @@ def main(args):
 
     do_test(args)
     proc.terminate()
+
 
 # Default values
 default_values = {
@@ -82,7 +87,6 @@ if __name__ == "__main__":
                         help=f"parallel of iperf (default: {default_values['parallel']})")
     parser.add_argument("-t", "--test_times", default=default_values["test_times"], type=int,
                         help=f"iterate times (default: {default_values['test_times']})")
-
 
     args = parser.parse_args()
     main(args)

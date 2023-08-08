@@ -48,10 +48,12 @@ def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, 
             if host_bandwidth * TOLERANT_USAGE_RATE <= current_total_speed:
                 regulated_speed = get_fasten_speed(regulated_speed, STEP_GBPS)
             elif host_bandwidth * TOLERANT_USAGE_RATE > current_total_speed + STEP_GBPS:
-                regulated_speed = get_loosen_speed(regulated_speed, STEP_GBPS, host_bandwidth)
+                regulated_speed = get_loosen_speed(
+                    regulated_speed, STEP_GBPS, host_bandwidth)
     elif current_guaranteed_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFSET:
         if current_total_speed - current_guaranteed_speed > IGNORE_BW_THRESHOLD_GBPS:
-            regulated_speed = get_loosen_speed(regulated_speed, STEP_GBPS, host_bandwidth)
+            regulated_speed = get_loosen_speed(
+                regulated_speed, STEP_GBPS, host_bandwidth)
     return regulated_speed
 
 
@@ -92,9 +94,9 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
     regulated_speed = calculate_regulated_speed(
         current_total_guaranteed_speed, total_guaranteed_speed, host_bandwidth, current_total_speed, regulated_speed)
 
-    print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
-          f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
-          f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
+    # print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
+    #      f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
+    #      f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
 
     for vm in running_vms:
         apply_traffic_control(vm, interfaces, guaranteed_vms,
@@ -112,7 +114,7 @@ def minimum_guarantee_vm_bandwidth():
     prev_times = {}
     prev_bytes = {}
 
-    print(f"Tolerant rate: {TOLERANT_USAGE_RATE}")
+    # print(f"Tolerant rate: {TOLERANT_USAGE_RATE}")
 
     while True:
         start_time = time.perf_counter()
@@ -136,7 +138,7 @@ def minimum_guarantee_vm_bandwidth():
             running_vms, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes)
         elapsed_time = time.perf_counter() - start_time
         sleep_time = max(0, MONITOR_PERIOD.total_seconds() - elapsed_time)
-        print(f"Elapsed time: {elapsed_time}, sleep {sleep_time} seconds.")
+        # print(f"Elapsed time: {elapsed_time}, sleep {sleep_time} seconds.")
         time.sleep(sleep_time)
 
 
