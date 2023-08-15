@@ -5,12 +5,15 @@ import utils.guest_utils as guest
 import utils.host_utils as host
 import utils.read_config as cfg
 
-MONITOR_PERIOD = datetime.timedelta(milliseconds=100)
+MONITOR_PERIOD = datetime.timedelta(milliseconds=200)
 IGNORE_BW_THRESHOLD_GBPS = 1
-MARGINAL_RATE = 1
-MARGINAL_OFFSET = 1
-STEP_GBPS = 0.2
-TOLERANT_USAGE_RATE = 1.0 - (((2**30)/(10**9))-1)*2
+MARGINAL_RATE = 1.05
+MARGINAL_OFFSET = 0.75
+STEP_GBPS = 0.3
+TOLERANT_RATE_LOWERBOUND = 1.0 - (((2**30)/(10**9))-1)*2.1
+TOLERANT_RATE_UPPERBOUND = 1.0 - (((2**30)/(10**9))-1)*1.6
+
+DEBUG_PRINT = False
 
 
 def get_current_time_and_gbits(vm_name, iface, prev_time, prev_bytes):
@@ -42,25 +45,26 @@ def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, 
     if current_guaranteed_speed < IGNORE_BW_THRESHOLD_GBPS:
         regulated_speed = -1
     elif current_guaranteed_speed < total_guaranteed_speed:
-        if regulated_speed == -1:
-            regulated_speed = host_bandwidth * TOLERANT_USAGE_RATE - total_guaranteed_speed
+        if regulated_speed < 0:
+            regulated_speed = host_bandwidth #host_bandwidth * TOLERANT_USAGE_RATE - total_guaranteed_speed
         else:
-            if host_bandwidth * TOLERANT_USAGE_RATE <= current_total_speed:
+            if host_bandwidth * TOLERANT_RATE_LOWERBOUND <= current_total_speed:
                 regulated_speed = get_fasten_speed(regulated_speed, STEP_GBPS)
-            elif host_bandwidth * TOLERANT_USAGE_RATE > current_total_speed + STEP_GBPS:
+            elif host_bandwidth * TOLERANT_RATE_UPPERBOUND > current_total_speed + STEP_GBPS:
                 regulated_speed = get_loosen_speed(
                     regulated_speed, STEP_GBPS, host_bandwidth)
     elif current_guaranteed_speed > total_guaranteed_speed * MARGINAL_RATE + MARGINAL_OFFSET:
         if current_total_speed - current_guaranteed_speed > IGNORE_BW_THRESHOLD_GBPS:
             regulated_speed = get_loosen_speed(
                 regulated_speed, STEP_GBPS, host_bandwidth)
+
     return regulated_speed
 
 
 def apply_traffic_control(vm, interfaces, guaranteed_vms, regulated_speed, host_bandwidth):
     if vm in guaranteed_vms.keys():
         return
-    if regulated_speed == -1 or regulated_speed >= host_bandwidth:
+    if regulated_speed <= 0 or regulated_speed >= host_bandwidth:
         tc.delete_queue_discipline(vm, interfaces[vm])
     elif regulated_speed > 0:
         tc.set_bandwidth_limit_mbps(
@@ -94,9 +98,10 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
     regulated_speed = calculate_regulated_speed(
         current_total_guaranteed_speed, total_guaranteed_speed, host_bandwidth, current_total_speed, regulated_speed)
 
-    # print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
-    #      f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
-    #      f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
+    if DEBUG_PRINT:
+        print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
+            f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
+            f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
 
     for vm in running_vms:
         apply_traffic_control(vm, interfaces, guaranteed_vms,
@@ -138,7 +143,8 @@ def minimum_guarantee_vm_bandwidth():
             running_vms, interfaces, host_bandwidth, guaranteed_vms, initialized_vms, regulated_speed, prev_times, prev_bytes)
         elapsed_time = time.perf_counter() - start_time
         sleep_time = max(0, MONITOR_PERIOD.total_seconds() - elapsed_time)
-        # print(f"Elapsed time: {elapsed_time}, sleep {sleep_time} seconds.")
+        if DEBUG_PRINT:
+            print(f"Elapsed time: {elapsed_time}, sleep {sleep_time} seconds.")
         time.sleep(sleep_time)
 
 

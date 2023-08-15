@@ -12,7 +12,7 @@ import models.multi_tenants.minimum_guarantee as minimum_guarantee
 test_name = "test-tmp"
 
 
-def do_test(args):
+def do_test(args, file_tag=""):
     guest_base_path = cfg.read_guest_base_directory()
 
     vm_names = host.get_running_vms()
@@ -25,13 +25,13 @@ def do_test(args):
         current_parallel = args.parallel
         if vm_name in ["b1_vm1"]:
             current_parallel = 2
-            ip = "20.0.1.26"
+            ip = "10.0.103.2"
         else:
-            ip = "20.0.1.27"
+            ip = "10.0.103.2"
         guest_agent.exec(
             vm_name, f"python3 {guest_base_path}/iperf_test.py -i {ip} -s {current_parallel} -e {current_parallel} -t {args.test_times} -u {args.duration} -l parallel &")
 
-    time.sleep(args.duration * args.test_times + (args.test_times + 1))
+    time.sleep(args.duration * args.test_times + (args.test_times + 3))
 
     print("Test finished. Collecting results...")
 
@@ -44,7 +44,7 @@ def do_test(args):
             vm_name, f"{guest_base_path}/results.txt")
 
         # Save the result to a file
-        with open(f"{current_loc}/test_tmp_result_{vm_name}.txt", 'w') as file:
+        with open(f"{current_loc}/test_tmp_result_{vm_name}{file_tag}.txt", 'w') as file:
             file.write(result)
 
         print(f"Result for {vm_name}: \n{result}")
@@ -54,10 +54,11 @@ def do_test(args):
     return
 
 
-def main(args):
+def main(args, run_proc=True, tag=""):
     proc = multiprocessing.Process(
         target=minimum_guarantee.minimum_guarantee_vm_bandwidth, args=())
-    proc.start()
+    if run_proc:
+        proc.start()
 
     iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
     guest_file_path = cfg.read_guest_base_directory()
@@ -68,15 +69,19 @@ def main(args):
     for vm_name in vm_names:
         guest_agent.copy_file(vm_name, iperf_test_file_path, guest_file_path)
 
-    do_test(args)
-    proc.terminate()
+    do_test(args, tag)
+    if run_proc:
+        proc.terminate()
 
 
 # Default values
 default_values = {
     "duration": 120,
-    "parallel": 5,
+    "parallel": 4,
     "test_times": 10,
+    "do_baseline": True,
+    "do_guarantee": False,
+    "overall_iterate": 1,
 }
 
 if __name__ == "__main__":
@@ -87,6 +92,13 @@ if __name__ == "__main__":
                         help=f"parallel of iperf (default: {default_values['parallel']})")
     parser.add_argument("-t", "--test_times", default=default_values["test_times"], type=int,
                         help=f"iterate times (default: {default_values['test_times']})")
+    parser.add_argument("-o", "--overall_iterate", default=default_values["overall_iterate"], type=int)
+    parser.add_argument("-b", "--do_baseline", default=default_values["do_baseline"], type=bool)
+    parser.add_argument("-g", "--do_guarantee", default=default_values["do_guarantee"], type=bool)
 
     args = parser.parse_args()
-    main(args)
+    for i in range(args.overall_iterate):
+        if args.do_baseline:
+            main(args, False, f"baseline{i}")
+        if args.do_guarantee:
+            main(args, True, f"gte{i}")
