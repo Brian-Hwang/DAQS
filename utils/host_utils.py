@@ -43,6 +43,22 @@ def get_vf_using_vms():
             print(vm)
 
 
+def start_first_non_running_vm():
+    all_vms = get_vms()
+    running_vms = get_running_vms()
+
+    for vm in all_vms:
+        if vm not in running_vms:
+            command = ['sudo', 'virsh', 'start', vm]
+            output = subprocess.run(command, capture_output=True, text=True)
+            if output.returncode != 0:
+                raise Exception(f"Command failed with error:\n{output.stderr}")
+            else:
+                print(f"VM {vm} started successfully")
+            return
+    print("No non-running VMs found.")
+
+
 def get_bandwidth(interface):
     """
     Gets the bandwidth of a network interface on the host machine.
