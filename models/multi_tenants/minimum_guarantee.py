@@ -7,11 +7,11 @@ import utils.read_config as cfg
 
 MONITOR_PERIOD = datetime.timedelta(milliseconds=200)
 IGNORE_BW_THRESHOLD_GBPS = 1
-MARGINAL_RATE = 1.05
-MARGINAL_OFFSET = 0.75
+MARGINAL_RATE = 1.45
+MARGINAL_OFFSET = 1.15
 STEP_GBPS = 0.3
-TOLERANT_RATE_LOWERBOUND = 1.0 - (((2**30)/(10**9))-1)*2.1
-TOLERANT_RATE_UPPERBOUND = 1.0 - (((2**30)/(10**9))-1)*1.8
+TOLERANT_RATE_LOWERBOUND = 1.0 - (((2**30)/(10**9))-1)*2.2
+TOLERANT_RATE_UPPERBOUND = 1.0 - (((2**30)/(10**9))-1)*1.3
 
 DEBUG_PRINT = True
 
@@ -49,7 +49,8 @@ def calculate_regulated_speed(current_guaranteed_speed, total_guaranteed_speed, 
         regulated_speed = -1
     elif current_guaranteed_speed < total_guaranteed_speed:
         if regulated_speed < 0:
-            regulated_speed = host_bandwidth #host_bandwidth * TOLERANT_USAGE_RATE - total_guaranteed_speed
+            # host_bandwidth * TOLERANT_USAGE_RATE - total_guaranteed_speed
+            regulated_speed = host_bandwidth
         else:
             if host_bandwidth * TOLERANT_RATE_LOWERBOUND <= current_total_speed:
                 regulated_speed = get_fasten_speed(regulated_speed, STEP_GBPS)
@@ -92,7 +93,8 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
                 prev_times[vm] = datetime.datetime.now()
                 prev_bytes[vm] = guest.check_tx_bytes(vm, interfaces[vm])
             except (TypeError, KeyError):
-                print(f"VM {vm} is not fully running yet. (Failed loading prev bytes)")
+                print(
+                    f"VM {vm} is not fully running yet. (Failed loading prev bytes)")
                 continue
         else:
             try:
@@ -103,14 +105,15 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
                     del prev_times[vm]
                 if vm in prev_bytes.keys():
                     del prev_bytes[vm]
-                print(f"VM {vm} is not fully running yet. (Failed loading prev gbits)")
+                print(
+                    f"VM {vm} is not fully running yet. (Failed loading prev gbits)")
                 continue
             if vm in guaranteed_vms.keys():
                 current_total_guaranteed_speed += speed
                 current_total_speed += speed
             else:
                 current_total_speed += speed
-                if(speed > IGNORE_BW_THRESHOLD_GBPS):
+                if (speed > IGNORE_BW_THRESHOLD_GBPS):
                     working_best_effort_vms.add(vm)
 
     regulated_speed = calculate_regulated_speed(
@@ -118,15 +121,17 @@ def limit_vm_bandwidth_minimum_guarantee(running_vms, interfaces, host_bandwidth
 
     if DEBUG_PRINT:
         print(f"VMs: {running_vms}, GVM: {guaranteed_vms} \n" +
-            f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
-            f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
+              f"Total Goal guaranteed speed: {total_guaranteed_speed}, Regulated speed : {regulated_speed}, \n" +
+              f"Guaranteed speed: {current_total_guaranteed_speed}, Total speed: {current_total_speed}")
 
     if len(working_best_effort_vms) > 0:
-        each_vm_regulated_speed = regulated_speed / len(working_best_effort_vms)
+        each_vm_regulated_speed = regulated_speed / \
+            len(working_best_effort_vms)
         if regulated_speed > host_bandwidth:
             each_vm_regulated_speed = -1
         for vm in working_best_effort_vms:
-            apply_traffic_control(vm, interfaces, guaranteed_vms, each_vm_regulated_speed)
+            apply_traffic_control(
+                vm, interfaces, guaranteed_vms, each_vm_regulated_speed)
 
     return initialized_vms, regulated_speed
 
@@ -157,7 +162,8 @@ def minimum_guarantee_vm_bandwidth():
                         vm_name)
                     initialized_vms.add(vm_name)
                 except (TypeError, KeyError):
-                    print(f"VM {vm_name} is not fully ready. Waiting... (failed to get network interface)")
+                    print(
+                        f"VM {vm_name} is not fully ready. Waiting... (failed to get network interface)")
         next_initialized_vms = set()
         for vm_name in initialized_vms:
             if vm_name in running_vms:

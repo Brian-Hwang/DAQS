@@ -1,3 +1,3 @@
-# GA-VM_QOS
+# DAQS
 
-provide Qos in VMS via Guest Agent
+DAQS: Dynamic and Accurate QoS for SR-IOV

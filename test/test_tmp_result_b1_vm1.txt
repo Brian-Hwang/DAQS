@@ -1,0 +1,10 @@
+Bandwidth for parallel=2, iteration 1: 9.68 Gbits/sec
+Bandwidth for parallel=2, iteration 2: 21.6 Gbits/sec
+Bandwidth for parallel=2, iteration 3: 22.1 Gbits/sec
+Bandwidth for parallel=2, iteration 4: 22.4 Gbits/sec
+Bandwidth for parallel=2, iteration 5: 13.4 Gbits/sec
+Bandwidth for parallel=2, iteration 6: 14.2 Gbits/sec
+Bandwidth for parallel=2, iteration 7: 19.5 Gbits/sec
+Bandwidth for parallel=2, iteration 8: 21.9 Gbits/sec
+Bandwidth for parallel=2, iteration 9: 20.0 Gbits/sec
+Bandwidth for parallel=2, iteration 10: 21.8 Gbits/sec

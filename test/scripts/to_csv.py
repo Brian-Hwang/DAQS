@@ -13,14 +13,18 @@ def convert_txt_to_csv(txt_file_path, csv_file_path):
     # Read the .txt file and parse data
     with open(txt_file_path, 'r') as file:
         for line in file:
-            # Regular expression to extract parallel, iteration, and bandwidth
+            # Regular expression to extract parallel, iteration, bandwidth, and unit
             match = re.match(
-                r'Bandwidth for \w+=(\d+), iteration (\d+): (\d+\.\d+) Gbits/sec', line)
+                r'Bandwidth for \w+=(\d+), iteration (\d+): (\d+\.\d+) (Gbits/sec|Mbits/sec)', line)
             if match:
                 parallel = int(match.group(1))
                 iteration = int(match.group(2))
-                # Convert Gbits/sec to Mbits/sec
                 bandwidth = float(match.group(3))
+                unit = match.group(4)
+
+                # Convert Mbits/sec to Gbits/sec if needed
+                if unit == "Mbits/sec":
+                    bandwidth /= 1000
 
                 # Add bandwidth to data dictionary
                 if iteration not in data_dict:

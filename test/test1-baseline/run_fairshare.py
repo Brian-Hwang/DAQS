@@ -19,7 +19,7 @@ def N_vs_N():
 
     for vm_name in vm_names:
         guest_agent.exec(
-            vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -s 5 -e 5 -t 10&")
+            vm_name, f"python3 {guest_base_path}/iperf_test2.py -u 120 -s 5 -e 5 -t 10&")
 
     # Wait for 25 minutes
     time.sleep(13 * 120)
@@ -49,15 +49,16 @@ def N_vs_1():
         return
 
     for vm_name in vm_names:
-        if vm_name != "b1_vm1":
+        if vm_name == "b1_vm1":
             guest_agent.exec(
-                vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.26 -s 5 -e 5 -t 10 &")
-        else:
-            guest_agent.exec(
-                vm_name, f"python3 {guest_base_path}/iperf_test.py -u 120 -i 20.0.1.27 -s 2 -e 2 -t 10 &")
+                vm_name, f"python3 {guest_base_path}/iperf_test.py -u 130 -i 10.0.103.2 -s 1 -e 1 -t 2 &")
+        # else:
+        #     guest_agent.exec(
+        #         vm_name, f"python3 {guest_base_path}/iperf_test.py -u 130 -i 10.0.103.2 -s 5 -e 5 -t 2 &")
 
+    return
     # Wait for 30 minutes
-    time.sleep(23 * 60)
+    time.sleep(6*130*5)
 
     host_base_path = cfg.read_host_base_directory()
 
@@ -77,7 +78,8 @@ def N_vs_1():
 
 
 def main():
-    iperf_test_file_path = cfg.read_host_base_directory() + "/test/scripts/iperf_test.py"
+    iperf_test_file_path = cfg.read_host_base_directory() + \
+        "/test/scripts/iperf_test.py"
     guest_file_path = cfg.read_guest_base_directory()
     vm_names = host.get_running_vms()
     if vm_names is None:

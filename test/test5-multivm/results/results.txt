@@ -1,0 +1,25 @@
+Results for parallel=2, iteration 1:
+------------------------------------------------------------
+Client connecting to 10.0.103.2, TCP port 5001
+TCP window size:  416 KByte (WARNING: requested 1.91 MByte)
+------------------------------------------------------------
+[  4] local 10.0.104.11 port 54816 connected with 10.0.103.2 port 5001
+[  3] local 10.0.104.11 port 54832 connected with 10.0.103.2 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  4]  0.0-30.0 sec  7.01 GBytes  2.01 Gbits/sec
+[  3]  0.0-30.0 sec  7.12 GBytes  2.04 Gbits/sec
+[SUM]  0.0-30.0 sec  14.1 GBytes  4.04 Gbits/sec
+[  4] 30.0-60.0 sec  6.97 GBytes  2.00 Gbits/sec
+[  3] 30.0-60.0 sec  7.18 GBytes  2.06 Gbits/sec
+[SUM] 30.0-60.0 sec  14.2 GBytes  4.05 Gbits/sec
+[  4] 60.0-90.0 sec  6.98 GBytes  2.00 Gbits/sec
+[  3] 60.0-90.0 sec  7.17 GBytes  2.05 Gbits/sec
+[SUM] 60.0-90.0 sec  14.2 GBytes  4.05 Gbits/sec
+[  4] 90.0-120.0 sec  6.99 GBytes  2.00 Gbits/sec
+[  4]  0.0-120.0 sec  28.0 GBytes  2.00 Gbits/sec
+[  3] 90.0-120.0 sec  7.14 GBytes  2.05 Gbits/sec
+[SUM] 90.0-120.0 sec  14.1 GBytes  4.05 Gbits/sec
+[  3]  0.0-120.0 sec  28.6 GBytes  2.05 Gbits/sec
+[SUM]  0.0-120.0 sec  56.6 GBytes  4.05 Gbits/sec
+
+--------------------------------------------------

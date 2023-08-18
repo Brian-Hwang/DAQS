@@ -94,30 +94,25 @@ for j in range(1, args.test_times + 1):
         #     time.sleep(delay_seconds)
 
         # Depending on the value of LOOP_ON, we'll change a different parameter
+        command = f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {args.message_size} -i 10"
+
         if args.loop_on == "duration":
-            output = subprocess.check_output(
-                f"iperf -c {args.ip} -t {i} -w {args.window_size} -P 1 -l {args.message_size}", shell=True).decode()
+            command = f"iperf -c {args.ip} -t {i} -w {args.window_size} -P 1 -l {args.message_size} -i 10"
         elif args.loop_on == "window_size":
-            output = subprocess.check_output(
-                f"iperf -c {args.ip} -t {args.duration} -w {i}m -P 1 -l {args.message_size}", shell=True).decode()
+            command = f"iperf -c {args.ip} -t {args.duration} -w {i}m -P 1 -l {args.message_size} -i 10"
         elif args.loop_on == "message_size":
-            output = subprocess.check_output(
-                f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {i}K", shell=True).decode()
+            command = f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {i}K -i 10"
         elif args.loop_on == "nothing":
-            output = subprocess.check_output(
-                f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {args.message_size} -i 10 ", shell=True).decode()
+            command = f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P 1 -l {args.message_size} -i 30"
         else:
-            output = subprocess.check_output(
-                f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P {i}  -i 10 ", shell=True).decode()
+            command = f"iperf -c {args.ip} -t {args.duration} -w {args.window_size} -P {i} -i 30"
 
-        # Extract the bandwidth value, assuming it's the last field in the output
-        bandwidth = output.split()[-2]
+        # Run command and capture the output
+        output = subprocess.run(command, shell=True,
+                                stdout=subprocess.PIPE).stdout.decode()
 
-        # Convert bandwidth (assumed to be in Mbits/sec) to a number
-        bandwidth_num = float(re.sub('[A-Za-z]*', '', bandwidth))
-
-        # Write bandwidth to file
+        # Append output to the file
         with open(output_file, 'a') as f:
-            f.write(
-                f"Bandwidth for {args.loop_on}={i}, iteration {j}: {bandwidth_num} Gbits/sec\n")
-    # time.sleep(10)
+            f.write(f"Results for {args.loop_on}={i}, iteration {j}:\n")
+            f.write(output)
+            f.write("\n" + "-"*50 + "\n")
