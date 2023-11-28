@@ -43,8 +43,12 @@ Single Root Input/Output Virtualization(SR-IOV) is a key feature in the PCI Expr
 
 ## Results
 
-![Utilization](images/utilization.png)
-Fig. 1. Utilization of Guarantee VM, Best-Effort VM, and total bandwidth
+<p align="center">
+  <img src="images/utilization.png" alt="Utilization" width="400">
+</p>
+<p align="center">
+  <em>Fig. 1. Utilization of Guarantee VM, Best-Effort VM, and total bandwidth</em>
+</p>
 
 > As shown in Fig. 1, The throughput of the Guarantee VM is compromised at the baseline (Leftmost bar). For the 10Gbps and 15Gbps guarantee cases, ip link can successfully guarantee 10Gbps but not 15Gbps, while DAQS can guarantee both
 > well. For ip link to guarantee a 15Gbps on the guarantee
@@ -52,8 +56,12 @@ Fig. 1. Utilization of Guarantee VM, Best-Effort VM, and total bandwidth
 > the Best-effort VM, resulting in 65.9% of the total bandwidth
 > utilization.
 
-![Scalability](images/scalability.png)
-Fig. 2. Adaptability in multi-tenant environment
+<p align="center">
+  <img src="images/scalability.png" alt="Scalability" width="400">
+</p>
+<p align="center">
+  <em>Fig. 2. Adaptability in multi-tenant environment</em>
+</p>
 
 > Fig. 2 shows the achieved throughput of the baseline, ip
 > link, and DAQS under the above experiment scenario. Here
