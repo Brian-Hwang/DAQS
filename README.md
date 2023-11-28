@@ -36,9 +36,32 @@
 
 ## About The Project
 
-![Screen Shot](images/screenshot.png)
+![Screen Shot](images/SR-IOV.png)
 
 Single Root Input/Output Virtualization(SR-IOV) is a key feature in the PCI Express(PCIe) specifications, which facilitates the shared use of the same device in a virtualized environment by different virtual machines(VMs) and enables network traffic to bypass the usual virtualization stack, reducing interference among Virtual Functions(VFs). However, guaranteeing Quality of Service(QoS) as mandated by Service Level Agreements(SLAs) in these environments is challenging due to the host stack bypassing. This paper discusses these challenges and proposes an approach to ensure accurate QoS in SR-IOV environments by monitoring and regulating traffic from the host side through QEMU Guest Agent. The proposed approach automatically manages active VFs to meet SLA while fully utilizing the host bandwidth.
+
+## Results
+
+![Utilization](images/utilization.png)
+Fig. 1. Utilization of Guarantee VM, Best-Effort VM, and total bandwidth
+
+> As shown in Fig. 1, The throughput of the Guarantee VM is compromised at the baseline (Leftmost bar). For the 10Gbps and 15Gbps guarantee cases, ip link can successfully guarantee 10Gbps but not 15Gbps, while DAQS can guarantee both
+> well. For ip link to guarantee a 15Gbps on the guarantee
+> VM, we can see that it requires down to a 10Gbps limit on
+> the Best-effort VM, resulting in 65.9% of the total bandwidth
+> utilization.
+
+![Scalability](images/Scalability.png)
+Fig. 2. Adaptability in multi-tenant environment
+
+> Fig. 2 shows the achieved throughput of the baseline, ip
+> link, and DAQS under the above experiment scenario. Here
+> we can see that turning on a VM has no impact if it is not
+> generating traffic. Even when other processes start generating
+> traffic, the Guarantee VM’s throughput is still guaranteed
+> with DAQS regardless of the number of bandwidth-consuming
+> processes, and the overall bandwidth is 93% of the baseline
+> similar to what we observed in the prior experiment.
 
 ## Getting Started
 
