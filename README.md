@@ -57,7 +57,7 @@ Single Root Input/Output Virtualization(SR-IOV) is a key feature in the PCI Expr
 > utilization.
 
 <p align="center">
-  <img src="images/scalability.png" alt="Scalability" width="500">
+  <img src="images/scalability.png" alt="Scalability" width="600">
 </p>
 <p align="center">
   <em>Fig. 2. Adaptability in multi-tenant environment</em>
