@@ -4,17 +4,7 @@
     <img src="images/DAQS.png" alt="Logo" width="400">
   </a>
 
-  <h3 align="center">DAQS</h3>
-
   <p align="center">
-    Dynamic and Accurate QoS for SR-IOV
-    <br/>
-    Enhancing Quality of Service in Virtual Machine Systems
-    <br/>
-    <br/>
-    <a href="https://daqsdemo.example.com"><strong>View Demo »</strong></a>
-    <br/>
-    <br/>
     <a href="https://github.com/Brian-Hwang/DAQS">Explore the docs</a>
     .
     <a href="https://github.com/Brian-Hwang/DAQS/issues">Report Bug</a>
@@ -22,8 +12,6 @@
     <a href="https://github.com/Brian-Hwang/DAQS/issues">Request Feature</a>
   </p>
 </p>
-
-![Downloads](https://img.shields.io/github/downloads/Brian-Hwang/DAQS/total) ![Contributors](https://img.shields.io/github/contributors/Brian-Hwang/DAQS?color=dark-green) ![Issues](https://img.shields.io/github/issues/Brian-Hwang/DAQS) ![License](https://img.shields.io/github/license/Brian-Hwang/DAQS)
 
 ## Table Of Contents
 
