@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/Brian-Hwang/DAQS">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/DAQS.png" alt="Logo" width="400">
   </a>
 
   <h3 align="center">DAQS</h3>
