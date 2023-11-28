@@ -51,7 +51,7 @@ Fig. 1. Utilization of Guarantee VM, Best-Effort VM, and total bandwidth
 > the Best-effort VM, resulting in 65.9% of the total bandwidth
 > utilization.
 
-![Scalability](images/Scalability.png)
+![Scalability](images/scalability.png)
 Fig. 2. Adaptability in multi-tenant environment
 
 > Fig. 2 shows the achieved throughput of the baseline, ip
