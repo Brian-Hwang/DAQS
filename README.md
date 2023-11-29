@@ -21,7 +21,7 @@
 - [About The Project](#about-the-project)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
-- [Detailed Description of Models](#detailed description of models)
+- [Detailed Description of Models](#detailed-description-of-models)
 - [TODO](#todo)
 
 ## About The Project
