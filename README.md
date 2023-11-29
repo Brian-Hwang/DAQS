@@ -17,9 +17,9 @@
 
 - [Table Of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
-- [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
+- [Detailed Description of Models](#detailed-description-of-models)
 - [TODO](#todo)
 
 ## About The Project
@@ -60,16 +60,6 @@ Single Root Input/Output Virtualization(SR-IOV) is a key feature in the PCI Expr
 > processes, and the overall bandwidth is 93% of the baseline
 > similar to what we observed in the prior experiment.
 
-## Getting Started
-
-Certainly! Here's a more detailed version of the prerequisites section for your project's README, focusing on DAQS support for Linux systems with virtual machines using KVM/Qemu.
-
----
-
-Certainly! I'll add the additional steps you've provided to the prerequisites section, focusing on the configuration details for both the host and guest systems in the context of setting up the Qemu Guest Agent. Here's the updated version:
-
----
-
 ### Prerequisites
 
 > Ensure your system meets the following prerequisites for using DAQS. It is designed for LINUX systems that use virtual machines through KVM/Qemu.
@@ -103,10 +93,6 @@ Certainly! I'll add the additional steps you've provided to the prerequisites se
      - Start the Guest Agent: Start the service using `sudo systemctl start qemu-guest-agent`.
 
 These steps provide a general guideline for setting up DAQS on Linux systems with KVM/Qemu. Specific instructions may vary based on your Linux distribution and system configuration. Consult your system's documentation or support resources for detailed instructions tailored to your setup.
-
-Sure, I'll enhance the configuration details to include more VM examples and provide more specific instructions for running the models. Additionally, I'll create a separate section to detail the different models available in DAQS.
-
----
 
 ## Usage
 
