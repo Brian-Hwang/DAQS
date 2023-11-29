@@ -5,6 +5,8 @@
   </a>
 
   <p align="center">
+    <a href="https://ictc.org/media?key=site/ictc2023a/abs/P4-20.pdf">Publication</a>
+    .
     <a href="https://github.com/Brian-Hwang/DAQS">Explore the docs</a>
     .
     <a href="https://github.com/Brian-Hwang/DAQS/issues">Report Bug</a>
@@ -19,7 +21,7 @@
 - [About The Project](#about-the-project)
 - [Prerequisites](#prerequisites)
 - [Usage](#usage)
-- [Detailed Description of Models](#detailed-description-of-models)
+- [Detailed Description of Models](#detailed description of models)
 - [TODO](#todo)
 
 ## About The Project
